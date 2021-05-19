@@ -52,6 +52,7 @@ class ViewTemplate
             <script src="assets/vendor/scrollreveal/scrollreveal.min.js"></script>
             <!-- Template Main JS File -->
             <script src="assets/js/main.js"></script>
+            <script src="js/jsTay.js"></script>
 
         </body>
 
@@ -156,7 +157,7 @@ class ViewTemplate
         </div><!-- End Property Search Section -->
 
         <!-- ======= Header/Navbar ======= -->
-        <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+        <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top" id="navbartay">
             <div class="container">
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
