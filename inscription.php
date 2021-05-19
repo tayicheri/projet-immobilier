@@ -6,6 +6,7 @@ require_once 'classes/model/ModelUser.php';
 require_once 'classes/utils/TestPreg.php';
 if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
     header('location:Accueil.php');
+    exit();
 } else {
     ViewTemplate::baliseTop();
 
