@@ -37,19 +37,19 @@ class ViewConnexion
 
                             <div class="form-group col-md-6">
                                 <label for="exampleFormControlInput1">Adresse Email</label>
-                                <input type="email" class="form-control" id="inscriMail" name="inscriMail" placeholder="name@example.com">
+                                <input type="email" class="form-control" id="connexMail" value="<?php echo isset($_POST['connexMail']) ? $_POST['connexMail'] : '' ?>" name="connexMail" placeholder="name@example.com">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="mdp">Mot de Passe</label>
-                                <input type="password" class="form-control" id="inscriMdp" name="inscriMdp">
+                                <input type="password" class="form-control" id="connexMdp"  name="connexMdp">
                             </div>
 
 
                             <div class="col-md-12 mt-2">
-                                <button type="submit" name="validerInscription" id="validerInscription" class="btn btn-success">valider</button>
+                                <button type="submit" name="validerConnexion" id="validerConnexion" class="btn btn-success">connexion</button>
                                 <button type="submit" name="oubliMdp" id="oubliMdp" class="btn btn-secondary ml-2">mot de passe oublier</button>
                             </div>
-                        </form>
+                        </form> <!-- End Formulaire de connexion -->
                         <div class="col-md-3 text-center">
                             <div class="card border-secondary mb-3" style="max-width: 18rem;">
                                 <div class="card-header">Tu n'as pas encore de compte ?</div>

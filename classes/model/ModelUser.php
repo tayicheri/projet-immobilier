@@ -27,4 +27,5 @@ class ModelUser
         $rPrep = $datay->prepare("UPDATE user SET confirmer='1' WHERE mail=? ");
         $rPrep->execute([$mail]);
     }
+   
 }

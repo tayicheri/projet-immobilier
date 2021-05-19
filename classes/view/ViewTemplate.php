@@ -4,7 +4,7 @@ class ViewTemplate
 
     public static function baliseTop()
     {
-        session_start() ?>
+        ?>
         <!DOCTYPE html>
 
         <html>
@@ -189,9 +189,9 @@ class ViewTemplate
                                 <a class="dropdown-item" href="">Mes annonces</a>
                             </div>
                         </li>
-                        <?php if (isset($_SESSION['id'])) { ?>
+                        <?php if (isset($_SESSION['mail'])) { ?>
                             <li class="nav-item">
-                                <a class="nav-link">Deconnexion</a>
+                                <a href="Deconnexion.php" class="nav-link">Deconnexion</a>
                             </li> <?php } else { ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="inscription.php">S'inscrire</a>

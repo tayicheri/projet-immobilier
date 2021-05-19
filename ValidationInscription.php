@@ -1,4 +1,5 @@
 <?php
+ session_start();
 require_once 'classes/model/ModelUser.php';
 require_once 'classes/utils/TestPreg.php';
 
