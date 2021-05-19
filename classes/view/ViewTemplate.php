@@ -164,7 +164,7 @@ class ViewTemplate
                     <span></span>
                     <span></span>
                 </button>
-                <a class="navbar-brand text-brand" href="i.php">Log'<span class="color-b">Tay</span></a>
+                <a class="navbar-brand text-brand" href="Accueil.php">Log'<span class="color-b">Tay</span></a>
                 <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-expanded="false">
                     <span class="fa fa-search" aria-hidden="true"></span>
                 </button>
@@ -189,12 +189,17 @@ class ViewTemplate
                                 <a class="dropdown-item" href="">Mes annonces</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="inscription.php">S'inscrire</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link">DeConnexion</a>
-                        </li>
+                        <?php if (isset($_SESSION['id'])) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link">Deconnexion</a>
+                            </li> <?php } else { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="inscription.php">S'inscrire</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="ConnexionUser.php" class="nav-link btn">Connexion</a>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-expanded="false">
@@ -216,7 +221,7 @@ class ViewTemplate
                         <nav class="nav-footer">
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <a href="i.php">Accueil</a>
+                                    <a href="Accueil.php">Accueil</a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="#">Acheter</a>
@@ -283,5 +288,12 @@ class ViewTemplate
 
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
         <div id="preloader"></div>
+    <?php }
+
+    public static function alerte($type, $message, $lien, $messageLien)
+    { ?>
+        <div class="alert text-center alert-<?php echo $type ?>" role="alert">
+            <?php echo $message ?> <a href="<?php echo $lien ?>"><?php echo $messageLien ?></a>
+        </div>
 <?php }
 }

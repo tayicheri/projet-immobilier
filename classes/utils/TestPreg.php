@@ -21,28 +21,28 @@ class testPreg
 
             switch ($typeTest[$i]) {
                 case 'email':
-                    filter_var($donnee[$i], FILTER_VALIDATE_EMAIL) ? $retour .= $typeTest[$i] . ' valide <br>' : $retour .= $typeTest[$i] . ' invalide <br>';
+                    filter_var($donnee[$i], FILTER_VALIDATE_EMAIL) ? '' : $retour .= $typeTest[$i] . ' invalide. ';
                     break;
                 case 'lien':
-                    filter_var($donnee[$i], FILTER_VALIDATE_URL) ? $retour .= $typeTest[$i] . ' valide <br>' : $retour .= $typeTest[$i] . ' invalide <br>';
+                    filter_var($donnee[$i], FILTER_VALIDATE_URL) ? '' : $retour .= $typeTest[$i] . ' invalide. ';
                     break;
                 default:
                     if (array_key_exists($typeTest[$i], $tabRegex)) {
 
-                        preg_match($tabRegex[$typeTest[$i]], $donnee[$i]) ? $retour .= $typeTest[$i] . ' valide <br>' : $retour .= $typeTest[$i] . ' invalide <br>';
+                        preg_match($tabRegex[$typeTest[$i]], $donnee[$i]) ? '' : $retour .= $typeTest[$i] . ' invalide. ';
                     } else {
-                        preg_match('/./', $donnee[$i]) ? $retour .= $typeTest[$i] . ' valide <br>' : $retour .= $typeTest[$i] . ' invalide <br>';
+                        preg_match('/./', $donnee[$i]) ?  '' : $retour .= $typeTest[$i] . ' invalide.';
                     }
             }
         }
 
-        $a = ['donnee' => $dataretour, 'retour' => $retour];
+        $a = ['donnee' => $dataretour, 'retour' => $retour, 'ok' => 1];
         if (preg_match('/invalide/', $a['retour'])) {
-            ViewTemplate::alerte('danger', $a['retour'], htmlspecialchars($_SERVER['PHP_SELF']));
-            return false;
+            $a = ['donnee' => $dataretour, 'retour' => $retour, 'ok' => 0];
+            return $a;
         } else {
 
-            return $a['donnee'];
+            return $a;
         }
     }
 }
