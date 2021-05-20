@@ -11,8 +11,7 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
     ViewTemplate::baliseTop();
 
     ViewTemplate::navBar();
-    if (isset($_GET['mailValider'])) {
-    } else if (isset($_POST['validerInscription'])) {
+    if (isset($_POST['validerInscription'])) {
         $donnee = [$_POST['inscriNom'], $_POST['inscriPrenom'], $_POST['inscriMail'], $_POST['inscriTel'], $_POST['inscriMdp']];
         $typeTest = ['nom', 'prenom', 'email', 'tel', 'mdp'];
         $donneeOk = testPreg::testInput($donnee, $typeTest);

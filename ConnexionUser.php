@@ -112,6 +112,7 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
         $('#formMdpOublie').removeClass('d-none')
         $('#formConnexion').addClass('d-none')
         $('#jeVeuxMe').text('Je veux Reinitialiser')
+        $('#mailMdpOublie').val($('#connexMail').val())
     });
 
 

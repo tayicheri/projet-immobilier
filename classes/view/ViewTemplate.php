@@ -4,7 +4,7 @@ class ViewTemplate
 
     public static function baliseTop()
     {
-        ?>
+?>
         <!DOCTYPE html>
 
         <html>
@@ -180,17 +180,18 @@ class ViewTemplate
                         <li class="nav-item">
                             <a class="nav-link" href="property-grid.html">louer</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Mon compte
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="">Mon profil</a>
-                                <a class="dropdown-item" href="">Mes favoris</a>
-                                <a class="dropdown-item" href="">Mes annonces</a>
-                            </div>
-                        </li>
+
                         <?php if (isset($_SESSION['mail'])) { ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Mon compte
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="">Mon profil</a>
+                                    <a class="dropdown-item" href="">Mes favoris</a>
+                                    <a class="dropdown-item" href="">Mes annonces</a>
+                                </div>
+                            </li>
                             <li class="nav-item">
                                 <a href="Deconnexion.php" class="nav-link">Deconnexion</a>
                             </li> <?php } else { ?>
