@@ -27,5 +27,11 @@ class ModelUser
         $rPrep = $datay->prepare("UPDATE user SET confirmer='1' WHERE mail=? ");
         $rPrep->execute([$mail]);
     }
-   
+    //modif Token
+    public static function modifColonneUser($colonne, $valeur, $mail)
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("UPDATE user SET $colonne=? WHERE mail=? ");
+        $rPrep->execute([$valeur, $mail]);
+    }
 }

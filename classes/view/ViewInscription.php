@@ -100,5 +100,57 @@ class ViewInscription
             </div>
         </section><!-- End Intro Single-->
         </main>
-<?php }
+    <?php }
+    public static function reinitMdp($a, $b)
+    { ?>
+
+        <main id="main">
+
+            <!-- ======= Intro Single ======= -->
+            <section class="intro-single">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-8">
+                            <div class="title-single-box">
+                                <h1 class="title-single">Reinitialisation du Mot de Passe</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
+                            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="Accueil.php">Accueil</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        Nouveau Mot de passe
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- FORMULAIRE De modif mdp  -->
+                    <?php if ($a) { ?>
+                        <div>
+                            <form class="row" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
+
+                                <div class="form-group col-md-6">
+                                    <label for="mdp">Mot de Passe</label>
+                                    <input type="password" class="form-control" id="reinitMpd" name="reinitMpd">
+                                </div>
+                                <input type="hidden" name="mail" value="<?php echo isset($_POST['validerReinitMpd']) ? $_POST['mail'] : $b ?>">
+
+                                <div class="col-md-12 mt-2">
+                                    <button type="submit" name="validerReinitMpd" id="validerReinitMpd" class="btn btn-success">valider</button>
+                                    <button type="reset" class="btn btn-secondary ml-2">effacer</button>
+                                </div>
+                            </form>
+
+                        </div> <?php } else {
+                                ViewTemplate::alerte('secondary', 'donnée corrompue', '', '');
+                            } ?>
+                </div>
+            </section><!-- End Intro Single-->
+        </main>
+<?php
+    }
 }

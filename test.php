@@ -8,7 +8,7 @@ ViewTemplate::baliseTop();
 <div class="container ">
     <div class="row">
 
-        <form class="col-md-6" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
+        <form class="col-md-9" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
 
 
             <div class="form-group col-md-6">
@@ -26,20 +26,20 @@ ViewTemplate::baliseTop();
                 <button type="submit" name="oubliMdp" id="oubliMdp" class="btn btn-primary ml-2">mot de passe oublier</button>
             </div>
         </form>
-        <div class="col-md-6 text-center">
-            <div class="card text-white  bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Tu n'as pas encore de compte ?</div>
-                <div class="card-body">
-                    <h5 class="card-title">Rejoins Nous</h5>
-                    <p class="card-text">Rejoingnez  la commnauté Log'Tay en vous creant un compte. Votre reve est a portée de main!</p>
-                </div>
-            </div>
+        <div class="col-md-3 text-center" id="droiteFormConnexion">
+        <div class="form-group col-md-12">
+            <label for="exampleFormControlInput1">Adresse Email</label>
+            <input type="email" class="form-control" id="connexMail" value="<?php echo isset($_POST['connexMail']) ? $_POST['connexMail'] : '' ?>" name="connexMail" placeholder="name@example.com">
+        </div>
+        <div class="col-md-12 mt-2">
+            <button type="button" name="validerOubliMdp" id="validerOubliMdp" class="btn btn-success">reinitialiser Mot de passe</button>
+        </div>
         </div>
 
-
     </div>
+</div>
 
-    <?php
+<?php
 
-    ViewTemplate::baliseBottom();
-    ?>
+ViewTemplate::baliseBottom();
+?>

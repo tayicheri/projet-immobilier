@@ -4,7 +4,7 @@ require_once 'classes/model/ModelUser.php';
 require_once 'classes/utils/TestPreg.php';
 
 
-if (isset($_GET['code'])) {
+if (isset($_GET['code']) && isset($_GET['mail'])) {
     $donnee = [$_GET['code'], $_GET['mail']];
     $type = ['code', 'mail'];
     $donneeOk = testPreg::testInput($donnee, $type);

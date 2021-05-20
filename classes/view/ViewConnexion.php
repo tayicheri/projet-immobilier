@@ -32,7 +32,7 @@ class ViewConnexion
                     </div>
                     <!-- FORMULAIRE De Connexion  -->
                     <div class="row">
-                        <form class="col-md-9" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
+                        <form class="col-md-9" id="formConnexion" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
 
 
                             <div class="form-group col-md-6">
@@ -41,16 +41,28 @@ class ViewConnexion
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="mdp">Mot de Passe</label>
-                                <input type="password" class="form-control" id="connexMdp"  name="connexMdp">
+                                <input type="password" class="form-control" id="connexMdp" name="connexMdp">
                             </div>
 
 
                             <div class="col-md-12 mt-2">
                                 <button type="submit" name="validerConnexion" id="validerConnexion" class="btn btn-success">connexion</button>
-                                <button type="submit" name="oubliMdp" id="oubliMdp" class="btn btn-secondary ml-2">mot de passe oublier</button>
+                                <button type="button" name="oubliMdp" id="oubliMdp" class="btn btn-secondary ml-2">mot de passe oublier</button>
                             </div>
                         </form> <!-- End Formulaire de connexion -->
-                        <div class="col-md-3 text-center">
+                        <!--Form mdp oublie -->
+                        <div class="col-md-9 d-none" id="formMdpOublie">
+                            <div class="form-group " >
+                                <label for="exampleFormControlInput1">Adresse Email</label>
+                                <input type="email" class="form-control" id="mailMdpOublie" name="mailMdpOublie" placeholder="name@example.com">
+                            </div>
+                            <div class=" mt-2">
+                                <button type="button" name="validerOubliMdp" id="validerOubliMdp" class="btn btn-success">reinitialiser Mot de passe</button>
+                            </div>
+                        </div>
+                        <!-- END Form mdp oublie -->
+
+                        <div class="col-md-3 text-center " id="droiteFormConnexion">
                             <div class="card border-secondary mb-3" style="max-width: 18rem;">
                                 <div class="card-header">Tu n'as pas encore de compte ?</div>
                                 <div class="card-body text-secondary">
