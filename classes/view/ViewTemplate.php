@@ -52,6 +52,7 @@ class ViewTemplate
             <script src="assets/vendor/scrollreveal/scrollreveal.min.js"></script>
             <!-- Template Main JS File -->
             <script src="assets/js/main.js"></script>
+            <script src="js/testPreg.js"></script>
             <script src="js/jsTay.js"></script>
 
         </body>

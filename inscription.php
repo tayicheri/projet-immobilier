@@ -37,3 +37,9 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
     ViewTemplate::footer();
     ViewTemplate::baliseBottom();
 }
+?>
+<script>
+    //validation client
+    let type = ['nom', 'prenom', 'tel', 'email', 'mdp']
+    validationClient('formInscription', type)
+</script>

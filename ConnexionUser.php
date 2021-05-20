@@ -10,9 +10,9 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
     header('location:Accueil.php');
     exit();
 } else {
-   
 
-//connexion user
+
+    //connexion user
     if (isset($_POST['validerConnexion'])) {
         $donnee = [$_POST['connexMail'], $_POST['connexMdp']];
         $typeTest = ['email', 'mdp'];
@@ -49,7 +49,7 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
             ViewConnexion::formConnexion();
             ViewTemplate::alerte('secondary', $donneeOk['retour'], '', '');
         }
-    } 
+    }
     //redirection recu de la  page validation inscrption
     else if (isset($_GET['mailValider'])) {
         ViewTemplate::baliseTop();
@@ -73,7 +73,7 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
     }
     //formulaire modif mot de passe a été valider 
     else if (isset($_POST['validerReinitMpd'])) {
-        
+
         $donnee = [$_POST['reinitMpd'], $_POST['mail']];
         $typeTest = ['mdp', 'email'];
         $donneeOk = testPreg::testInput($donnee, $typeTest);
@@ -82,7 +82,7 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
             ModelUser::modifColonneUser('pass', password_hash($donneeOk['mdp'], PASSWORD_DEFAULT), $donneeOk['email']);
 
             //on ecrase le token pour soit inutilisable 
-            ModelUser::modifColonneUser('token',uniqid(),$donneeOk['email']);
+            ModelUser::modifColonneUser('token', uniqid(), $donneeOk['email']);
 
             //on connecte l'user apres modif du mdp
             $_SESSION['mail'] = $donneeOk['email'];
@@ -100,7 +100,7 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
         ViewConnexion::formConnexion();
     }
 
-//footer de la page, cas d abscence de session
+    //footer de la page, cas d abscence de session
     ViewTemplate::footer();
     ViewTemplate::baliseBottom();
 }
@@ -111,13 +111,31 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
 
         $('#formMdpOublie').removeClass('d-none')
         $('#formConnexion').addClass('d-none')
-
+        $('#jeVeuxMe').text('Je veux Reinitialiser')
     });
-    $('#validerOubliMdp').click(function(e) {
 
-        let a = {
-            mail: $('#mailMdpOublie').val()
+
+
+    $('#validerOubliMdp').click(function(e) {
+        if (!(tabRegex['email'].test($('#mailMdpOublie').val()))) {
+
+            $("mailMdpOublie").addClass("bg-danger text-white");
+        } else {
+            let a = {
+                mail: $('#mailMdpOublie').val()
+            }
+            generationAjax('classes/controller/MdpOublie.php', a, 'html', 'formMdpOublie')
+
         }
-        generationAjax('classes/controller/MdpOublie.php', a, 'html', 'formMdpOublie')
     })
+</script>
+
+<script>
+    //validation client 
+    //form connexion
+    let typeConnexion = ['email', 'mdp']
+    validationClient('formConnexion', typeConnexion)
+    // //form validation reinitialisation mdp
+    // let typeReini = ['mdp']
+    // validationClient('modifMdpOublie', typeReini)
 </script>

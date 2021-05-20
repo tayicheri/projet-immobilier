@@ -30,7 +30,7 @@ class ViewInscription
                     </div>
                     <!-- FORMULAIRE D4INSCRIPTION  -->
                     <div>
-                        <form class="row" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
+                        <form class="row" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" id="formInscription" method="POST" enctype="multipart/form-data">
                             <div class="form-group col-md-6">
                                 <label for="nom">Nom</label>
                                 <input type="text" class="form-control" value="<?php echo isset($_POST['inscriNom']) ? $_POST['inscriNom'] : '' ?>" id="inscriNom" name="inscriNom">
@@ -131,7 +131,7 @@ class ViewInscription
                     <!-- FORMULAIRE De modif mdp  -->
                     <?php if ($a) { ?>
                         <div>
-                            <form class="row" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
+                            <form class="row" id="modifMdpOublie" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
 
                                 <div class="form-group col-md-6">
                                     <label for="mdp">Mot de Passe</label>

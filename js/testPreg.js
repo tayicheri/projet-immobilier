@@ -3,15 +3,13 @@ tabRegex = {
   prenom: /^[\p{L}\s]{2,15}$/u,
   email: /^[a-zA-Z]+[\w]+[@][a-z\.\-]{1,20}[\.][a-z]{1,3}$/,
   tel: /^[+]?[0-9]{8,}$/,
-  typeSoc: /^[\w]{1,10}$/,
-  typeSoc1: /^[\w]{1,10}$/,
-  adresse: /./,
-  description: /./,
-  lien: /^http/,
+
+  
 };
 
-function validationClient(idform) {
+function validationClient(idform, typesTest) {
   $("#" + idform).submit(function (event) {
+    
     let form = $(event.target);
 
     let nomForm = [];
@@ -28,8 +26,8 @@ function validationClient(idform) {
       valeurForm.push($("#" + nomForm[i]).val());
     }
 
-    let validation = parcourNomform(nomForm, valeurForm);
-    console.log(v);
+    let validation = parcourNomform(nomForm, valeurForm, typesTest);
+
     if (validation != nomForm.length) {
       event.preventDefault();
 
@@ -38,14 +36,18 @@ function validationClient(idform) {
   });
 }
 
-function parcourNomform(form, valeur) {
+function parcourNomform(form, valeur, typeTabregex) {
   let f = 0;
 
-  for (i = 0; i < t.length; i++) {
-    $("[name=" + form[i] + "]").removeClass("bg-danger text-white");
-    tabRegex[form[i]].test(valeur[i])
-      ? (f += 1)
-      : $("[name=" + form[i] + "]").addClass("bg-danger text-white");
+  for (i = 0; i < typeTabregex.length; i++) {
+    if (tabRegex[typeTabregex[i]]) {
+      $("[name=" + form[i] + "]").removeClass("bg-danger text-white");
+      tabRegex[typeTabregex[i]].test(valeur[i])
+        ? (f += 1)
+        : $("[name=" + form[i] + "]").addClass("bg-danger text-white");
+    } else {
+      f += 1;
+    }
   }
 
   return f;

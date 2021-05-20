@@ -14,7 +14,7 @@ class ViewConnexion
                     <div class="row">
                         <div class="col-md-12 col-lg-8">
                             <div class="title-single-box">
-                                <h1 class="title-single">Je veux Me Connecter</h1>
+                                <h1 class="title-single" id="jeVeuxMe">Je veux Me Connecter</h1>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-4">
