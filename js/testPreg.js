@@ -4,12 +4,11 @@ tabRegex = {
   email: /^[a-zA-Z]+[\w]+[@][a-z\.\-]{1,20}[\.][a-z]{1,3}$/,
   tel: /^[+]?[0-9]{8,}$/,
 
-  
+  mdp: /./,
 };
 
 function validationClient(idform, typesTest) {
   $("#" + idform).submit(function (event) {
-    
     let form = $(event.target);
 
     let nomForm = [];
@@ -25,7 +24,7 @@ function validationClient(idform, typesTest) {
     for (i = 0; i < nomForm.length; i++) {
       valeurForm.push($("#" + nomForm[i]).val());
     }
-
+    console.log(valeurForm);
     let validation = parcourNomform(nomForm, valeurForm, typesTest);
 
     if (validation != nomForm.length) {

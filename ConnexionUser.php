@@ -119,7 +119,7 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
     $('#validerOubliMdp').click(function(e) {
         if (!(tabRegex['email'].test($('#mailMdpOublie').val()))) {
 
-            $("mailMdpOublie").addClass("bg-danger text-white");
+            $("#mailMdpOublie").addClass("bg-danger text-white");
         } else {
             let a = {
                 mail: $('#mailMdpOublie').val()
@@ -135,7 +135,12 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
     //form connexion
     let typeConnexion = ['email', 'mdp']
     validationClient('formConnexion', typeConnexion)
-    // //form validation reinitialisation mdp
-    // let typeReini = ['mdp']
-    // validationClient('modifMdpOublie', typeReini)
+    //form validation reinitialisation mdp
+
+    $('#validerReinitMpd').click(function(e) {
+        if (!(tabRegex['mdp'].test($('#reinitMpd').val()))) {
+            e.preventDefault()
+            $("#reinitMpd").addClass("bg-danger text-white");
+        }
+    })
 </script>
