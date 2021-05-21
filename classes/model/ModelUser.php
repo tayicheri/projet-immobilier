@@ -2,6 +2,41 @@
 require_once 'connexion.php';
 class ModelUser
 {
+
+    private $id;
+    private $nom;
+    private $prenom;
+    private $mail;
+    private $pass;
+    private $tel;
+    private $role;
+    private $confirme;
+    private $actif;
+    private $token;
+    private $annonces = [];
+    private $favoris = [];
+
+    public function __construct($id)
+    {
+        $donneeUser = $this->getById($id);
+        $this->id = $id;
+        $this->nom = $donneeUser['nom'];
+        $this->prenom = $donneeUser['prenom'];
+        $this->mail = $donneeUser['mail'];
+        $this->pass = $donneeUser['pass'];
+        $this->tel = $donneeUser['tel'];
+        $this->role = $donneeUser['role'];
+        $this->confirme = $donneeUser['confirme'];
+        $this->actif = $donneeUser['actif'];
+        $this->token = $donneeUser['token'];
+        $this->annonces = [2];
+        $this->favoris = [1];
+    }
+
+
+
+
+
     // ajoute utilisateur via form CREATE
     static function ajoutUser($nom, $prenom, $mail, $tel, $mdp, $code)
     {
@@ -20,6 +55,16 @@ class ModelUser
         return $rPrep->fetch(pdo::FETCH_ASSOC);
     }
 
+    //recup user via id
+
+    public static function getById($id)
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("SELECT * FROM user WHERE id=?");
+        $rPrep->execute([$id]);
+        return $rPrep->fetch(pdo::FETCH_ASSOC);
+    }
+
     //confirme compte via token
     public static function confirmCompte($mail)
     {
@@ -27,11 +72,108 @@ class ModelUser
         $rPrep = $datay->prepare("UPDATE user SET confirme='1' WHERE mail=? ");
         $rPrep->execute([$mail]);
     }
-    //modif Token
+    //modif Colonne
     public static function modifColonneUser($colonne, $valeur, $mail)
     {
         $datay = connexion();
         $rPrep = $datay->prepare("UPDATE user SET $colonne=? WHERE mail=? ");
         $rPrep->execute([$valeur, $mail]);
+    }
+
+    //GETTER user
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getPreom()
+    {
+        return $this->prenom;
+    }
+    public function getNom()
+    {
+        return $this->nom;
+    }
+    public function getMail()
+    {
+        return $this->mail;
+    }
+    public function getPass()
+    {
+        return $this->pass;
+    }
+    public function getTel()
+    {
+        return $this->tel;
+    }
+    public function getRole()
+    {
+        return $this->role;
+    }
+    public function getConfirme()
+    {
+        return $this->confirme;
+    }
+    public function getActif()
+    {
+        return $this->actif;
+    }
+    public function getToken()
+    {
+        return $this->token;
+    }
+    public function getAnnonces()
+    {
+        return $this->annonces;
+    }
+    public function getFavoris()
+    {
+        return $this->favoris;
+    }
+
+
+    //SETTER User
+    public function setNom($newNom)
+    {
+        $this->nom = $newNom;
+    }
+    public function setPrenom($newPrenom)
+    {
+        $this->prenom = $newPrenom;
+    }
+    public function setMail($newMail)
+    {
+        $this->mail = $newMail;
+    }
+    public function setPass($newPass)
+    {
+        $this->pass = $newPass;
+    }
+    public function setTel($newTel)
+    {
+        $this->tel = $newTel;
+    }
+    public function setRole($newRole)
+    {
+        $this->role = $newRole;
+    }
+    public function setConfirme($newConfirme)
+    {
+        $this->confirme = $newConfirme;
+    }
+    public function setActif($newActif)
+    {
+        $this->actif = $newActif;
+    }
+    public function setToken($newToken)
+    {
+        $this->token = $newToken;
+    }
+    public function setAnnonces($newAnnonces)
+    {
+        $this->annonces = $newAnnonces;
+    }
+    public function setFavoris($newFavoris)
+    {
+        $this->favoris = $newFavoris;
     }
 }

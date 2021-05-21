@@ -181,7 +181,7 @@ class ViewTemplate
                             <a class="nav-link" href="property-grid.html">louer</a>
                         </li>
 
-                        <?php if (isset($_SESSION['mail'])) { ?>
+                        <?php if (isset($_SESSION['conecteId'])) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Mon compte
@@ -190,6 +190,7 @@ class ViewTemplate
                                     <a class="dropdown-item" href="">Mon profil</a>
                                     <a class="dropdown-item" href="">Mes favoris</a>
                                     <a class="dropdown-item" href="">Mes annonces</a>
+                                    <?php if (isset($_SESSION['conecteRole'])) { ?> <a class="dropdown-item" href="">Les Types de Biens</a> <?php } ?>
                                 </div>
                             </li>
                             <li class="nav-item">

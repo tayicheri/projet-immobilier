@@ -22,7 +22,10 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
             if (ModelUser::getByMail($donneeOk['email'])) {
                 if (password_verify($donneeOk['mdp'], ModelUser::getByMail($donneeOk['email'])['pass'])) {
                     if (ModelUser::getByMail($donneeOk['email'])['confirme']) {
-                        $_SESSION['mail'] = $donneeOk['email'];
+
+                        $dataUser = new ModelUser(ModelUser::getByMail($donneeOk['email'])['id']);
+                        $_SESSION['conecteId'] = $dataUser->getId();
+                        $_SESSION['conecteRole'] = $dataUser->getRole();
                         header('location:Accueil.php');
                     } else {
                         ViewTemplate::baliseTop();
@@ -85,7 +88,9 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
             ModelUser::modifColonneUser('token', uniqid(), $donneeOk['email']);
 
             //on connecte l'user apres modif du mdp
-            $_SESSION['mail'] = $donneeOk['email'];
+
+            $dataUser = new ModelUser(ModelUser::getByMail($donneeOk['email'])['id']);
+            $_SESSION['userConecte'] = $dataUser;
             header('location:Accueil.php');
         } else {
             //reponse validation serveur negative
