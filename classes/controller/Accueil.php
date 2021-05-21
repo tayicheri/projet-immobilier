@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'classes/view/ViewTemplate.php';
+require_once '../view/ViewTemplate.php';
 
 ViewTemplate::baliseTop();
 

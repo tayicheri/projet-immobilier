@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once 'classes/view/ViewTemplate.php';
-require_once 'classes/view/ViewConnexion.php';
-require_once 'classes/view/ViewInscription.php';
-require_once 'classes/model/ModelUser.php';
-require_once 'classes/utils/TestPreg.php';
+require_once '../view/ViewTemplate.php';
+require_once '../view/ViewConnexion.php';
+require_once '../view/ViewInscription.php';
+require_once '../model/ModelUser.php';
+require_once '../utils/TestPreg.php';
 //controle si une session est en cours
 if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
     header('location:Accueil.php');
@@ -130,7 +130,7 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
             let a = {
                 mail: $('#mailMdpOublie').val()
             }
-            generationAjax('classes/controller/MdpOublie.php', a, 'html', 'formMdpOublie')
+            generationAjax('../controller/MdpOublie.php', a, 'html', 'formMdpOublie')
 
         }
     })

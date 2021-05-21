@@ -15,11 +15,11 @@ if (isset($_POST['mail'])) {
             ModelUser::modifColonneUser('token', $code, $donneeOk['email']);
             ViewTemplate::alerte('secondary', 'pour modifier votre mot de passe cliquez', 'ConnexionUser.php?code=' . $code . '&mail=' . $donneeOk['email'], 'ici');
         } else {
-            ViewTemplate::alerte('secondary', 'adresse inccorect. Pour reessayer cliquez', '../../Connexion.php', 'ici');
+            ViewTemplate::alerte('secondary', 'adresse inccorect. Pour reessayer cliquez', 'ConnexionUser.php', 'ici');
         }
     } else {
         ViewTemplate::alerte('secondary', 'Donnée non correcte', '', '');
     }
 } else {
-    header('location:../../Accueil.php');
+    header('location:Accueil.php');
 }

@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once 'classes/view/ViewTemplate.php';
-require_once 'classes/view/ViewInscription.php';
-require_once 'classes/model/ModelUser.php';
-require_once 'classes/utils/TestPreg.php';
+require_once '../view/ViewTemplate.php';
+require_once '../view/ViewInscription.php';
+require_once '../model/ModelUser.php';
+require_once '../utils/TestPreg.php';
 if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
     header('location:Accueil.php');
     exit();

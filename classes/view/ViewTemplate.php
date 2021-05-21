@@ -12,21 +12,21 @@ class ViewTemplate
         <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1  shrink-to-fit=no" />
-            <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-            <link rel="stylesheet" href="css/fontawesome/all.min.css" />
+            <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css" />
+            <link rel="stylesheet" href="../../css/fontawesome/all.min.css" />
             <!-- Favicons -->
-            <link href="assets/img/logtay.png" rel="icon">
-            <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+            <link href="../../assets/img/logtay.png" rel="icon">
+            <link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
             <!-- Google Fonts -->
             <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
             <!-- Vendor CSS Files -->
-            <link href="assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
-            <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-            <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+            <link href="../../assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+            <link href="../../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+            <link href="../../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
 
             <!-- Template Main CSS File -->
-            <link href="assets/css/style.css" rel="stylesheet">
+            <link href="../../assets/css/style.css" rel="stylesheet">
 
 
 
@@ -43,17 +43,17 @@ class ViewTemplate
     public static function baliseBottom()
     { ?>
 
-            <script src="js/jquery/jquery-3.5.1.min.js"></script>
-            <script src="js/bootstrap/bootstrap.min.js"></script>
-            <script src="js/fontawesome/all.min.js"></script>
+            <script src="../../js/jquery/jquery-3.5.1.min.js"></script>
+            <script src="../../js/bootstrap/bootstrap.min.js"></script>
+            <script src="../../js/fontawesome/all.min.js"></script>
             <!-- Vendor JS Files -->
-            <script src="assets/vendor/php-email-form/validate.js"></script>
-            <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-            <script src="assets/vendor/scrollreveal/scrollreveal.min.js"></script>
+            <script src="../../assets/vendor/php-email-form/validate.js"></script>
+            <script src="../../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+            <script src="../../assets/vendor/scrollreveal/scrollreveal.min.js"></script>
             <!-- Template Main JS File -->
-            <script src="assets/js/main.js"></script>
-            <script src="js/testPreg.js"></script>
-            <script src="js/jsTay.js"></script>
+            <script src="../../assets/js/main.js"></script>
+            <script src="../../js/testPreg.js"></script>
+            <script src="../../js/jsTay.js"></script>
 
         </body>
 
@@ -190,7 +190,7 @@ class ViewTemplate
                                     <a class="dropdown-item" href="">Mon profil</a>
                                     <a class="dropdown-item" href="">Mes favoris</a>
                                     <a class="dropdown-item" href="">Mes annonces</a>
-                                    <?php if (isset($_SESSION['conecteRole'])) { ?> <a class="dropdown-item" href="">Les Types de Biens</a> <?php } ?>
+                                    <?php if ($_SESSION['conecteRole']) { ?> <a class="dropdown-item" href="">Les Types de Biens</a> <?php } ?>
                                 </div>
                             </li>
                             <li class="nav-item">

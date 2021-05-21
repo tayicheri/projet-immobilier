@@ -1,7 +1,7 @@
 <?php
  session_start();
-require_once 'classes/model/ModelUser.php';
-require_once 'classes/utils/TestPreg.php';
+require_once '../model/ModelUser.php';
+require_once '../utils/TestPreg.php';
 
 
 if (isset($_GET['code']) && isset($_GET['mail'])) {
