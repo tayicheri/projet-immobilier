@@ -21,7 +21,7 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
             $donneeOk = $donneeOk['donnee'];
             if (ModelUser::getByMail($donneeOk['email'])) {
                 if (password_verify($donneeOk['mdp'], ModelUser::getByMail($donneeOk['email'])['pass'])) {
-                    if (ModelUser::getByMail($donneeOk['email'])['confirmer']) {
+                    if (ModelUser::getByMail($donneeOk['email'])['confirme']) {
                         $_SESSION['mail'] = $donneeOk['email'];
                         header('location:Accueil.php');
                     } else {

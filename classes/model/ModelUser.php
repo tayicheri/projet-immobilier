@@ -24,7 +24,7 @@ class ModelUser
     public static function confirmCompte($mail)
     {
         $datay = connexion();
-        $rPrep = $datay->prepare("UPDATE user SET confirmer='1' WHERE mail=? ");
+        $rPrep = $datay->prepare("UPDATE user SET confirme='1' WHERE mail=? ");
         $rPrep->execute([$mail]);
     }
     //modif Token
