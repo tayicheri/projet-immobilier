@@ -4,7 +4,7 @@ require_once '../view/ViewTemplate.php';
 require_once '../view/ViewInscription.php';
 require_once '../model/ModelUser.php';
 require_once '../utils/TestPreg.php';
-if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     header('location:Accueil.php');
     exit();
 } else {

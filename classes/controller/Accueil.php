@@ -8,7 +8,8 @@ ViewTemplate::navBar();
 ?><div style="padding-top: 300px;">
     <?php
 
-   echo isset($_SESSION['conecteId']) ? var_dump($_SESSION['conecteId']) : 'non connecte';
+    var_dump($_SESSION);
+   
 
 
     ?>

@@ -85,7 +85,7 @@ class ModelUser
     {
         return $this->id;
     }
-    public function getPreom()
+    public function getPrenom()
     {
         return $this->prenom;
     }
@@ -135,45 +135,56 @@ class ModelUser
     public function setNom($newNom)
     {
         $this->nom = $newNom;
+        return $this;
     }
     public function setPrenom($newPrenom)
     {
         $this->prenom = $newPrenom;
+        return $this;
     }
     public function setMail($newMail)
     {
         $this->mail = $newMail;
+        return $this;
     }
     public function setPass($newPass)
     {
         $this->pass = $newPass;
+        return $this;
     }
     public function setTel($newTel)
     {
         $this->tel = $newTel;
+        return $this;
     }
     public function setRole($newRole)
     {
         $this->role = $newRole;
+        return $this;
     }
     public function setConfirme($newConfirme)
     {
         $this->confirme = $newConfirme;
+        return $this;
     }
     public function setActif($newActif)
     {
         $this->actif = $newActif;
+        return $this;
     }
     public function setToken($newToken)
     {
         $this->token = $newToken;
+        return $this;
     }
     public function setAnnonces($newAnnonces)
     {
         $this->annonces = $newAnnonces;
+        return $this;
     }
     public function setFavoris($newFavoris)
     {
         $this->favoris = $newFavoris;
+        return $this;
     }
 }

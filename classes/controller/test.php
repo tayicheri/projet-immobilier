@@ -1,11 +1,14 @@
 <?php
 
-require_once 'classes/view/ViewTemplate.php';
+require_once '../view/ViewTemplate.php';
+require_once '../view/ViewTypeBiens.php';
 
 ViewTemplate::baliseTop();
 
+ViewTypeBiens::listeTypeBiens('a');
+
 ?>
-<input type="hidden"
+
 
 <?php
 

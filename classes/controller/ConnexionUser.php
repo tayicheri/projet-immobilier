@@ -6,7 +6,7 @@ require_once '../view/ViewInscription.php';
 require_once '../model/ModelUser.php';
 require_once '../utils/TestPreg.php';
 //controle si une session est en cours
-if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     header('location:Accueil.php');
     exit();
 } else {
@@ -24,8 +24,9 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
                     if (ModelUser::getByMail($donneeOk['email'])['confirme']) {
 
                         $dataUser = new ModelUser(ModelUser::getByMail($donneeOk['email'])['id']);
-                        $_SESSION['conecteId'] = $dataUser->getId();
-                        $_SESSION['conecteRole'] = $dataUser->getRole();
+                        $_SESSION['id'] = $dataUser->getId();
+                        $_SESSION['role'] = $dataUser->getRole();
+                        $_SESSION['nom'] = $dataUser->getNom() . ' ' . $dataUser->getPrenom();
                         header('location:Accueil.php');
                     } else {
                         ViewTemplate::baliseTop();
@@ -90,7 +91,9 @@ if (isset($_SESSION['mail']) && !empty($_SESSION['mail'])) {
             //on connecte l'user apres modif du mdp
 
             $dataUser = new ModelUser(ModelUser::getByMail($donneeOk['email'])['id']);
-            $_SESSION['userConecte'] = $dataUser;
+            $_SESSION['id'] = $dataUser->getId();
+            $_SESSION['role'] = $dataUser->getRole();
+            $_SESSION['nom'] = $dataUser->getNom() . ' ' . $dataUser->getPrenom();
             header('location:Accueil.php');
         } else {
             //reponse validation serveur negative

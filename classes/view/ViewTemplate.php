@@ -181,16 +181,16 @@ class ViewTemplate
                             <a class="nav-link" href="property-grid.html">louer</a>
                         </li>
 
-                        <?php if (isset($_SESSION['conecteId'])) { ?>
+                        <?php if (isset($_SESSION['id'])) { ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Mon compte
+                                    <?php echo $_SESSION['nom'] ?>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="">Mon profil</a>
                                     <a class="dropdown-item" href="">Mes favoris</a>
                                     <a class="dropdown-item" href="">Mes annonces</a>
-                                    <?php if ($_SESSION['conecteRole']) { ?> <a class="dropdown-item" href="">Les Types de Biens</a> <?php } ?>
+                                    <?php if ($_SESSION['role']) { ?> <a class="dropdown-item" href="TypeBiens.php">Les Types de Biens</a> <?php } ?>
                                 </div>
                             </li>
                             <li class="nav-item">
