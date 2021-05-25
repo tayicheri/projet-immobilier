@@ -7,6 +7,7 @@ require_once '../utils/telechargement.php';
 require_once '../model/ModelTypeBien.php';
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 1) {
     header('location:Accueil.php');
+    exit();
 } else {
     ViewTemplate::baliseTop();
 
@@ -51,8 +52,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 1) {
 <script>
     //affichage formulaire d'ajout
     $('#afficherAjoutType').click(function(e) {
-        $('#listeTypeBiens').toggleClass('d-none');
-        $('#formTypeBiens').toggleClass('d-none');
+        $('#listeTypeBiens').hide().toggleClass('d-none').fadeIn('slow');
+        $('#formTypeBiens').hide().toggleClass('d-none').fadeIn('slow');
         $('#afficherAjoutType').text() == 'Ajouter' ? $('#afficherAjoutType').text(' Liste des Types') : $('#afficherAjoutType').text('Ajouter')
         $('#actifDansBien').text() == 'Ajouter' ? $('#actifDansBien').text(' Liste des Types') : $('#actifDansBien').text('Ajouter')
     })

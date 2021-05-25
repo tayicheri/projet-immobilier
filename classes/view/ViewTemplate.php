@@ -172,7 +172,7 @@ class ViewTemplate
                 <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link p-md-2 bg-success text-white rounded-pill" href="index.html">Deposer une annonce</a>
+                            <a class="nav-link p-md-2 bg-success text-white rounded-pill" href="CreationAnnonce.php">Deposer une annonce</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">Acheter</a>

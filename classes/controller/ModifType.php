@@ -12,9 +12,14 @@ if (isset($_POST['idModifType'])) {
     $donneeok = testPreg::testInput($donnee, $type);
     if ($donneeok['ok']) {
         $donneeok = $donneeok['donnee'];
-        ModelTypeBien::modifType($donneeok['id'], $donneeok['nom']);
-        rename(ROOT_DIR . '/assets/img/' . $donneeok['prenom'] . '.jpg', ROOT_DIR . '/assets/img/' . $donneeok['nom'] . '.jpg');
-        ViewTypeBiens::listeTypeBiens3($donneeok['nom']);
+        if (ModelTypeBien::typebienViaLibele($donneeok['nom'])) {
+            ViewTemplate::alerte('secondary', 'ce libellé est déjà pris ', 'TypeBiens.php', 'retour ici');
+        } else {
+
+            ModelTypeBien::modifType($donneeok['id'], $donneeok['nom']);
+            rename(ROOT_DIR . '/assets/img/' . $donneeok['prenom'] . '.jpg', ROOT_DIR . '/assets/img/' . $donneeok['nom'] . '.jpg');
+            ViewTypeBiens::listeTypeBiens3($donneeok['nom']);
+        }
     } else {
         ViewTemplate::alerte('danger', 'erreur de securite', 'TypeBiens.php', 'retour');
     }
