@@ -1488,6 +1488,8 @@ a:hover {
   color: #ffffff;
   position: absolute;
   bottom: 20px;
+  right: 0px;
+  left: 0px;
   z-index: 2;
 }
 

@@ -25,12 +25,15 @@ function validationClient(idform, typesTest) {
       valeurForm.push($("#" + nomForm[i]).val());
     }
     console.log(valeurForm);
+
     let validation = parcourNomform(nomForm, valeurForm, typesTest);
-
-    if (validation != nomForm.length) {
+    console.log(validation, nomForm);
+    if (validation != typesTest.length) {
       event.preventDefault();
-
+      return false;
       //traitementen cas d'erreur
+    } else {
+      return true;
     }
   });
 }

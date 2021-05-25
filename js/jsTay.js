@@ -4,8 +4,6 @@ $("#photo").change(function (e) {
   $("#labelPhoto").text(val[val.length - 1]);
 });
 
-
-
 function generationAjax(url, donnee, donneeType, idDiv) {
   let request = $.ajax({
     type: "POST",
@@ -17,7 +15,10 @@ function generationAjax(url, donnee, donneeType, idDiv) {
 
   request.done(function (retour) {
     //Code à jouer en cas d'éxécution sans erreur du script du PHP
-    $("#" + idDiv).html(retour);
+    $("#" + idDiv)
+      .hide()
+      .html(retour)
+      .fadeIn("slow");
   });
   request.fail(function (http_error) {
     //Code à jouer en cas d'éxécution en erreur du script du PHP
@@ -28,5 +29,3 @@ function generationAjax(url, donnee, donneeType, idDiv) {
     alert("Erreur " + code + " (" + code_label + ") : " + server_msg);
   });
 }
-
-

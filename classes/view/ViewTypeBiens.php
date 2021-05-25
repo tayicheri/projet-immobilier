@@ -41,7 +41,7 @@ class ViewTypeBiens
             <section class="news-grid grid">
                 <div class="container">
                     <div id="listeTypeBiens" class="">
-                        <div class="row">
+                        <div class="row" id="majAjax">
 
                             <?php self::listeTypeBiens2('a') ?>
 
@@ -83,8 +83,8 @@ class ViewTypeBiens
                                 <input type="text" class="form-control" id="typeBien" name="typeBien">
                             </div>
                             <div class="custom-file ml-3 col-md-12">
-                                <input type="file" class="custom-file-input" id="photo">
-                                <label class="custom-file-label col-md-12" id="labelPhoto" for="customFile">photo</label>
+                                <input type="file" class="custom-file-input" name="photo" id="photo">
+                                <label class="custom-file-label col-md-12" id="labelPhoto" for="customFile">photo ( jpg, 500*500)</label>
                             </div>
                             <div class="col-md-12 mt-2">
                                 <button type="submit" name="ajoutTypeBien" id="ajoutTypeBien" class="btn btn-success">Ajouter</button>
@@ -94,36 +94,98 @@ class ViewTypeBiens
                     </div>
                     <!-- ende formulaire  -->
                 </div>
+                <!-- MODAL modif type bien  -->
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modifier Type</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group col-md-6">
+                                    <label for="modifTypeBien">Type de bien </label>
+                                    <input type="text" class="form-control" id="modifTypeBien" name="modifTypeBien">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="dismissModalModtifType" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" id="validModifType" class="btn btn-success">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </section><!-- End Blog Grid-->
 
         </main><!-- End #main -->
-    <?php  }
+        <?php  }
 
-    public static function listeTypeBiens2($bien)
-    { ?>
-        <div class="col-md-4">
-            <div class="card-box-b card-shadow news-box">
-                <div class="img-box-b">
-                    <img src="../../assets/img/post-1.jpg" alt="" class="img-b img-fluid">
-                </div>
-                <div class="card-overlay">
-                    <div class="card-header-b">
-                        <div class="card-category-b">
-                            <a href="#" class="category-b">Type</a>
-                        </div>
-                        <div class="card-title-b">
-                            <h2 class="title-2">
-                                <a href="#">Appartement
-                                    <br> new</a>
-                            </h2>
-                        </div>
-                        <div class="card-date">
-                            <!-- <span class="date-b">18 Sep. 2017</span> -->
+    public static function listeTypeBiens2()
+    {
+        $bien = ModelTypeBien::typeBiens();
+
+        foreach ($bien as $nomBien) {  ?>
+            <div class="col-md-4" id="<?php echo 'divTypeBien' . $nomBien['id'] ?>">
+                <div class="card-box-b card-shadow news-box">
+                    <div class="img-box-b">
+                        <img src="<?php echo '../../assets/img/' . $nomBien['libelle'] . '.jpg' ?>" alt="" class="img-b img-fluid">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-header-b">
+                            <div class="card-category-b">
+                                <a href="#" class="category-b">Type</a>
+                            </div>
+                            <div class="card-title-b pb-5">
+                                <h2 class="title-2">
+                                    <a href="#"><?php echo $nomBien['libelle'] ?>
+                                        <br> </a>
+                                </h2>
+                            </div>
+                            <div class="card-date d-flex justify-content-between ">
+                                <div><a href="" class="suppTypeBien" data-idType="<?php echo $nomBien['id'] ?>"> <span class="date-b text-White"><i class="fas fa-trash fa-2x"></i></span></a></div>
+                                <div> <a href="" class="modifTypeBien " data-idtype="<?php echo $nomBien['id'] ?>" data-nomtype="<?php echo $nomBien['libelle'] ?>" data-toggle="modal" data-target="#exampleModal"> <span class="date-b text-white"><i class="fas fa-edit fa-2x"></i></span></a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+        <?php }
+    }
+
+    public static function listeTypeBiens3($libelle)
+    {
+        $bien = ModelTypeBien::typebienViaLibele($libelle);
+        ?>
+
+        <div class="card-box-b card-shadow news-box">
+            <div class="img-box-b">
+                <img src="<?php echo '../../assets/img/' . $bien['libelle'] . '.jpg' ?>" alt="" class="img-b img-fluid">
+            </div>
+            <div class="card-overlay">
+                <div class="card-header-b">
+                    <div class="card-category-b">
+                        <a href="#" class="category-b">Type</a>
+                    </div>
+                    <div class="card-title-b pb-5">
+                        <h2 class="title-2">
+                            <a href="#"><?php echo $bien['libelle'] ?>
+                                <br> </a>
+                        </h2>
+                    </div>
+                    <div class="card-date d-flex justify-content-between ">
+                        <div><a href="" class="suppTypeBien" data-idType="<?php echo $bien['id'] ?>"> <span class="date-b text-White"><i class="fas fa-trash fa-2x"></i></span></a></div>
+                        <div> <a href="" class="modifTypeBien " data-idtype="<?php echo $bien['id'] ?>" data-nomtype="<?php echo $bien['libelle'] ?>" data-toggle="modal" data-target="#exampleModal"> <span class="date-b text-white"><i class="fas fa-edit fa-2x"></i></span></a></div>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
 
 <?php }
 }
