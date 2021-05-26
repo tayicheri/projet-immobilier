@@ -39,3 +39,20 @@ function generationAjax(url, donnee, donneeType, idDiv) {
     alert("Erreur " + code + " (" + code_label + ") : " + server_msg);
   });
 }
+//Gestion hover supp et modif type de bien
+$(".suppTypeBien span, .iconeSupp span").hover(
+  function (e) {
+    $(this).addClass("text-danger");
+  },
+  function (e) {
+    $(this).removeClass("text-danger");
+  }
+);
+$(".modifTypeBien span, .iconeModif span").hover(
+  function (e) {
+    $(this).addClass("text-success");
+  },
+  function (e) {
+    $(this).removeClass("text-success");
+  }
+);

@@ -33,7 +33,7 @@ class ModelAnnonce
         ON annonce.id=user_annonce.annonce_id
         INNER JOIN user 
         ON user_annonce.user_id=user.id
-        WHERE annonce.id=1");
+        WHERE annonce.id=?");
         $rPrep->execute([$id]);
         return $rPrep->fetch(pdo::FETCH_ASSOC);
     }

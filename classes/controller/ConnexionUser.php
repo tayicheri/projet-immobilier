@@ -22,12 +22,18 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             if (ModelUser::getByMail($donneeOk['email'])) {
                 if (password_verify($donneeOk['mdp'], ModelUser::getByMail($donneeOk['email'])['pass'])) {
                     if (ModelUser::getByMail($donneeOk['email'])['confirme']) {
-
-                        $dataUser = new ModelUser(ModelUser::getByMail($donneeOk['email'])['id']);
-                        $_SESSION['id'] = $dataUser->getId();
-                        $_SESSION['role'] = $dataUser->getRole();
-                        $_SESSION['nom'] = $dataUser->getNom() . ' ' . $dataUser->getPrenom();
-                        header('location:Accueil.php');
+                        if (ModelUser::getByMail($donneeOk['email'])['actif']) {
+                            $dataUser = new ModelUser(ModelUser::getByMail($donneeOk['email'])['id']);
+                            $_SESSION['id'] = $dataUser->getId();
+                            $_SESSION['role'] = $dataUser->getRole();
+                            $_SESSION['nom'] = $dataUser->getNom() . ' ' . $dataUser->getPrenom();
+                            header('location:Accueil.php');
+                        } else {
+                            ViewTemplate::baliseTop();
+                            ViewTemplate::navBar();
+                            ViewConnexion::formConnexion();
+                            ViewTemplate::alerte('secondary', "votre compte a été desactive", '', '');
+                        }
                     } else {
                         ViewTemplate::baliseTop();
                         ViewTemplate::navBar();
@@ -69,7 +75,11 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
         ViewTemplate::baliseTop();
         ViewTemplate::navBar();
         if ($donneeOk['ok']) {
-            ViewInscription::reinitMdp(1, $donneeOk['donnee']['email']);
+            if ($donneeOk['donnee']['code'] == ModelUser::getByMail($donneeOk['donnee']['email'])['token']) {
+                ViewInscription::reinitMdp(1, $donneeOk['donnee']['email']);
+            } else {
+                ViewTemplate::alerte('secondary" style="margin-top:200px;"', 'erreur donnée saisie,retour cliquez', 'ConnexionUser.php', 'ici');
+            }
         } else {
 
             ViewInscription::reinitMdp(0, 0);

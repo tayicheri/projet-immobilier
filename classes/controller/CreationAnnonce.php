@@ -67,3 +67,8 @@ if (!isset($_SESSION['id']) && empty($_SESSION['role'])) {
     ViewTemplate::footer();
     ViewTemplate::baliseBottom();
 }
+?>
+<script>
+    validationClient('ajoutAnnonce', ['nom', 'surface', 'prix', 'adresse', 'cp', 'nom'])
+    
+</script>

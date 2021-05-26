@@ -20,6 +20,13 @@ class ModelTypeBien
         $rPrep->execute([$type]);
         return $rPrep->fetch(pdo::FETCH_ASSOC);
     }
+    public static function typebienViaId($id)
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("SELECT * FROM typebien WHERE id=?");
+        $rPrep->execute([$id]);
+        return $rPrep->fetch(pdo::FETCH_ASSOC);
+    }
 
     //recupe liste tout les rype de bien
     public static function typeBiens()

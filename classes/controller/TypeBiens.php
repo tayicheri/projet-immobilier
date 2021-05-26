@@ -63,17 +63,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 1) {
     validationClient('formTypeBien', ['nom', 'file'])
 </script>
 <script>
-    //Gestion hover supp et modif type de bien 
-    $('.suppTypeBien span').hover(function(e) {
-        $(this).addClass('text-danger')
-    }, function(e) {
-        $(this).removeClass('text-danger')
-    })
-    $('.modifTypeBien span').hover(function(e) {
-        $(this).addClass('text-success')
-    }, function(e) {
-        $(this).removeClass('text-success')
-    })
+    
 
 
     //Ajax suppression type de bien 

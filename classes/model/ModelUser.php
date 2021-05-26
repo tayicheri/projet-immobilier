@@ -29,7 +29,7 @@ class ModelUser
         $this->confirme = $donneeUser['confirme'];
         $this->actif = $donneeUser['actif'];
         $this->token = $donneeUser['token'];
-        $this->annonces = [2];
+        $this->annonces = $this->getUserAnnonceById($id);
         $this->favoris = [1];
     }
 
@@ -63,6 +63,21 @@ class ModelUser
         $rPrep = $datay->prepare("SELECT * FROM user WHERE id=?");
         $rPrep->execute([$id]);
         return $rPrep->fetch(pdo::FETCH_ASSOC);
+    }
+
+    //recup annonce user via id
+
+    public static function getUserAnnonceById($id)
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("SELECT annonce_id,titre,descriptions,surface,photos,adresse,ville,cp,prix,type,type_bien_id,user_id,nom,prenom,mail,tel FROM annonce
+        INNER JOIN user_annonce
+        ON annonce.id=user_annonce.annonce_id
+        INNER JOIN user 
+        ON user.id=user_annonce.user_id
+        WHERE user.id=?");
+        $rPrep->execute([$id]);
+        return $rPrep->fetchAll(pdo::FETCH_ASSOC);
     }
 
     //confirme compte via token

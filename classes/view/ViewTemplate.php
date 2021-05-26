@@ -189,7 +189,7 @@ class ViewTemplate
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="">Mon profil</a>
                                     <a class="dropdown-item" href="">Mes favoris</a>
-                                    <a class="dropdown-item" href="">Mes annonces</a>
+                                    <a class="dropdown-item" href="Annonce.php?mesAnnonces=1">Mes annonces</a>
                                     <?php if ($_SESSION['role']) { ?> <a class="dropdown-item" href="TypeBiens.php">Les Types de Biens</a> <?php } ?>
                                 </div>
                             </li>
@@ -289,7 +289,7 @@ class ViewTemplate
             </div>
         </footer> <!-- End  Footer -->
 
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        <!-- <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a> -->
         <div id="preloader"></div>
     <?php }
 
