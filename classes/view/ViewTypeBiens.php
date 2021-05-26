@@ -83,7 +83,7 @@ class ViewTypeBiens
                                 <input type="text" class="form-control" id="typeBien" name="typeBien">
                             </div>
                             <div class="custom-file ml-3 col-md-12">
-                                <input type="file" class="custom-file-input" name="photo" id="photo">
+                                <input type="file" class="custom-file-input" name="photo" id="photo" required>
                                 <label class="custom-file-label col-md-12" id="labelPhoto" for="customFile">photo ( jpg, 500*500)</label>
                             </div>
                             <div class="col-md-12 mt-2">

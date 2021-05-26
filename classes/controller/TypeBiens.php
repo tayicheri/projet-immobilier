@@ -25,6 +25,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 1) {
                 $extensions = ['jpg'];
                 $dowload = telechargement::telecharge($_FILES['photo'], $extensions, 'assets/img', $donneeOk['nom']);
                 if ($dowload['ok']) {
+                   
                     ModelTypeBien::ajoutType($donneeOk['nom']);
                     ViewTypeBiens::listeTypeBiens1();
                     ViewTemplate::alerte('success', 'ajout effectué', '', '');

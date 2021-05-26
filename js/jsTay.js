@@ -3,6 +3,16 @@ $("#photo").change(function (e) {
   val = val.split("\\");
   $("#labelPhoto").text(val[val.length - 1]);
 });
+$("#photos").change(function (e) {
+  let val = $(this).val();
+  val = val.split("\\");
+  $("#labelPhotos").text(val[val.length - 1]);
+});
+$("#photoP").change(function (e) {
+  let val = $(this).val();
+  val = val.split("\\");
+  $("#labelPhotoP").text(val[val.length - 1]);
+});
 
 function generationAjax(url, donnee, donneeType, idDiv) {
   let request = $.ajax({

@@ -30,6 +30,9 @@ class telechargement
             echo ' <div class="alert alert-primary text-center" role="alert">Sorry, extension non autorisé.</div>';
             $fichier_ok = 0;
         }
+//resizing
+
+
         // Check if $fichier_Ok is set to 0 by an error
         if ($fichier_ok == 0) {
             echo ' <div class="alert alert-primary text-danger text-center" role="alert"> your file was not uploaded.</div>';
