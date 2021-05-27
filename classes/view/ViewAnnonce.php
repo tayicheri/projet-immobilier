@@ -423,7 +423,7 @@ class ViewAnnonce
                                                 <ul class="card-info d-flex justify-content-around">
                                                     <li>
 
-                                                        <a class="iconeSupp" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
+                                                        <a class="iconeSupp" data-toggle="modal" data-target="#modalSuppAnnonce" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
                                                     </li>
                                                     <li>
                                                         <h4 class="card-info-title">Surface</h4>
@@ -433,7 +433,7 @@ class ViewAnnonce
                                                     </li>
                                                     <li>
 
-                                                        <a class="iconeModif" href="<?php echo 'ModifAnnonce.php?id='.$annonce['annonce_id'] ?>"> <span><i class="fas fa-edit fa-2x"></i></span></a>
+                                                        <a class="iconeModif" href="<?php echo 'ModifAnnonce.php?id=' . $annonce['annonce_id'] ?>"> <span><i class="fas fa-edit fa-2x"></i></span></a>
                                                     </li>
                                                     <!-- <li>
                                                         <h4 class="card-info-title">Garages</h4>
@@ -448,6 +448,27 @@ class ViewAnnonce
 
                         <?php } ?>
 
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalSuppAnnonce" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Suppression Annonce</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    etes vous sur de supprimer l'annonce?
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
