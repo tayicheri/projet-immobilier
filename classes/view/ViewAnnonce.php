@@ -576,5 +576,123 @@ class ViewAnnonce
 
         </div>
 
+    <?php }
+    public static function grosCarousel($id1, $id2, $id3)
+    {
+
+
+        $donne1 = ModelAnnonce::annonceViaId($id1);
+        $donne12 = explode(' ', $donne1['adresse']);
+        $donne2 = ModelAnnonce::annonceViaId($id2);
+        $donne22 = explode(' ', $donne1['adresse']);
+        $donne3 = ModelAnnonce::annonceViaId($id3);
+        $donne32 = explode(' ', $donne1['adresse']);
+        // var_dump($donne12, $donne22, $donne32);
+    ?>
+        <div class="intro intro-carousel">
+            <div id="carousel" class="owl-carousel owl-theme">
+                <div class="carousel-item-a intro-item bg-image" style="background-image: url(<?= '../../images/' . json_decode($donne1['photos'], true)['photoP'] ?>)">
+                    <div class="overlay overlay-a"></div>
+                    <div class="intro-content display-table">
+                        <div class="table-cell">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="intro-body">
+                                            <p class="intro-title-top"><?= $donne1['ville'] ?>, France
+                                                <br> <?= $donne1['cp'] ?>
+                                            </p>
+                                            <h1 class="intro-title mb-4">
+                                                <span class="color-b"><?= $donne12[0] ?> </span> <?= $donne12[1] ?>
+                                                <br> <?php $t = '';
+                                                        for ($i = 0; $i < count($donne12); $i++) {
+                                                            if ($i == 0 || $i == 1) {
+                                                                continue;
+                                                            } else {
+                                                                $t .= ' ' . $donne12[$i];
+                                                            }
+                                                        }
+                                                        echo $t; ?>
+                                            </h1>
+                                            <p class="intro-subtitle intro-price">
+                                                <a href="<?= 'Annonce.php?id='.$donne1['annonce_id'] ?>"><span class="price-a"><?= $donne1['type'] == 0 ? 'vente' : 'location' ?> | $ <?= $donne1['prix'] ?></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item-a intro-item bg-image" style="background-image: url(<?= '../../images/' . json_decode($donne2['photos'], true)['photoP'] ?>)">
+                    <div class="overlay overlay-a"></div>
+                    <div class="intro-content display-table">
+                        <div class="table-cell">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="intro-body">
+                                            <p class="intro-title-top"><?= $donne2['ville'] ?>, France
+                                                <br> <?= $donne1['cp'] ?>
+                                            </p>
+                                            <h1 class="intro-title mb-4">
+                                            <span class="color-b"><?= $donne12[0] ?> </span> <?= $donne12[1] ?>
+                                                <br> <?php $t = '';
+                                                        for ($i = 0; $i < count($donne22); $i++) {
+                                                            if ($i == 0 || $i == 1) {
+                                                                continue;
+                                                            } else {
+                                                                $t .= ' ' . $donne22[$i];
+                                                            }
+                                                        }
+                                                        echo $t; ?>
+                                            </h1>
+                                            <p class="intro-subtitle intro-price">
+                                                <a href="<?= 'Annonce.php?id='.$donne2['annonce_id'] ?>"><span class="price-a"><?= $donne2['type'] == 0 ? 'vente' : 'location' ?> | $ <?= $donne2['prix'] ?></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item-a intro-item bg-image" style="background-image: url(<?= '../../images/' . json_decode($donne3['photos'], true)['photoP'] ?>)">
+                    <div class="overlay overlay-a"></div>
+                    <div class="intro-content display-table">
+                        <div class="table-cell">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="intro-body">
+                                            <p class="intro-title-top"><?= $donne3['ville'] ?>, France
+                                                <br> <?= $donne1['cp'] ?>
+                                            </p>
+                                            <h1 class="intro-title mb-4">
+                                            <span class="color-b"><?= $donne32[0] ?> </span> <?= $donne32[1] ?>
+                                                <br> <?php $t = '';
+                                                        for ($i = 0; $i < count($donne32); $i++) {
+                                                            if ($i == 0 || $i == 1) {
+                                                                continue;
+                                                            } else {
+                                                                $t .= ' ' . $donne32[$i];
+                                                            }
+                                                        }
+                                                        echo $t; ?>
+                                            </h1>
+                                            <p class="intro-subtitle intro-price">
+                                                <a href="<?= 'Annonce.php?id='.$donne3['annonce_id'] ?>"><span class="price-a"><?= $donne3['type'] == 0 ? 'vente' : 'location' ?> | $ <?= $donne3['prix'] ?></span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Intro Section -->
+
+
 <?php }
 }

@@ -39,6 +39,19 @@ class ModelAnnonce
         return $rPrep->fetch(pdo::FETCH_ASSOC);
     }
 
+    //anonce liste
+    public static function annonceListe()
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("SELECT annonce_id,titre,descriptions,surface,photos,adresse,ville,cp,prix,type,type_bien_id,user_id,nom,prenom,mail,tel FROM annonce
+        INNER JOIN user_annonce
+        ON annonce.id=user_annonce.annonce_id
+        INNER JOIN user 
+        ON user_annonce.user_id=user.id");
+        $rPrep->execute([]);
+        return $rPrep->fetchAll(pdo::FETCH_ASSOC);
+    }
+
     //supprimer une znnoce
     public static function suppAnnonce($id)
     {
