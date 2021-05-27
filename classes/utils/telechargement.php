@@ -103,17 +103,17 @@ class telechargement
 
         // Check file size
         if ($fichier["size"] > 50000000) {
-            return ['ok' => 0, 'alert' => ' Sorry, your file is too large.','nom'=>null];
+            return ['ok' => 0, 'alert' => ' Sorry, your file is too large.', 'nom' => null];
             $fichier_ok = 0;
         }
         // Allow certain file formats
         if (!in_array($fichierType, $extension)) {
-            return ['ok' => 0, 'alert' => ' Sorry, extension non autorisé.','nom'=>null];
+            return ['ok' => 0, 'alert' => ' Sorry, extension non autorisé.', 'nom' => null];
             $fichier_ok = 0;
         }
         // Check if $fichier_Ok is set to 0 by an error
         if ($fichier_ok == 0) {
-            return ['ok' => 0, 'alert' => '  your file was not uploaded.','nom'=>null];
+            return ['ok' => 0, 'alert' => '  your file was not uploaded.', 'nom' => null];
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($fichier["tmp_name"], $fichier_chemin)) {
@@ -122,6 +122,15 @@ class telechargement
             } else {
                 echo ['ok' => 0, 'alert' => ' Sorry, there was an error uploading your file.'];
             }
+        }
+    }
+
+
+    public static function effaceImg($photoJson)
+    {
+        $photos = json_decode($photoJson, true);
+        foreach ($photos as $ph) {
+            unlink('../../images/' . $ph);
         }
     }
 }

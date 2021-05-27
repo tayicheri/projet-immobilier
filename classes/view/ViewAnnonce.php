@@ -380,7 +380,7 @@ class ViewAnnonce
             <!-- ======= Property Grid ======= -->
             <section class="property-grid grid">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" id="listeAnnonce">
                         <div class="col-sm-12">
                             <div class="grid-option">
                                 <form>
@@ -407,7 +407,7 @@ class ViewAnnonce
                                         <div class="card-overlay-a-content">
                                             <div class="card-header-a">
                                                 <h2 class="card-title-a">
-                                                    <a href="<?php echo 'ModifAnnonce.php?id=' . $annonce['annonce_id'] ?>"><?php echo $annonce['adresse'] ?>
+                                                    <a href="<?php echo 'Annonce.php?id=' . $annonce['annonce_id'] ?>"><?php echo $annonce['adresse'] ?>
                                                         <br /> <?php echo  $annonce['ville'] ?></a>
                                                 </h2>
                                             </div>
@@ -419,11 +419,11 @@ class ViewAnnonce
                                                     <span class="ion-ios-arrow-forward"></span>
                                                 </a>
                                             </div>
-                                            <div class="card-footer-a">
+                                            <div class="card-footer-a testTay2">
                                                 <ul class="card-info d-flex justify-content-around">
                                                     <li>
 
-                                                        <a class="iconeSupp" data-toggle="modal" data-target="#modalSuppAnnonce" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
+                                                        <a class="iconeSupp" data-idannonce="<?php echo $annonce['annonce_id'] ?>" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
                                                     </li>
                                                     <li>
                                                         <h4 class="card-info-title">Surface</h4>
@@ -464,8 +464,8 @@ class ViewAnnonce
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Supprimer</button>
+                                    <button type="button" id="fermeModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" id="validSuppAnnonce" class="btn btn-success">Supprimer</button>
                                 </div>
                             </div>
                         </div>
@@ -501,6 +501,80 @@ class ViewAnnonce
             </section><!-- End Property Grid Single-->
 
         </main><!-- End #main -->
+
+    <?php }
+
+    public static function retourMesAnnonces($annoncesUser)
+    { ?>
+
+        <div class="col-sm-12">
+            <div class="grid-option">
+                <form>
+                    <select class="custom-select" disabled>
+                        <option selected>Tous</option>
+                        <option value="1">Du plus Recent</option>
+                        <option value="2">A louer</option>
+                        <option value="3">A vendre</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+
+        <?php foreach ($annoncesUser as $annonce) {
+            $photos = json_decode($annonce['photos'], true);
+
+        ?>
+            <div class="col-md-4">
+                <div class="card-box-a card-shadow">
+                    <div class="img-box-a">
+                        <img src="<?php echo '../../images/' . $photos['photoP'] ?>" style="width: 350px;" alt="" class="img-a img-fluid">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-overlay-a-content">
+                            <div class="card-header-a">
+                                <h2 class="card-title-a">
+                                    <a href="<?php echo 'Annonce.php?id=' . $annonce['annonce_id'] ?>"><?php echo $annonce['adresse'] ?>
+                                        <br /> <?php echo  $annonce['ville'] ?></a>
+                                </h2>
+                            </div>
+                            <div class="card-body-a">
+                                <div class="price-box d-flex">
+                                    <span class="price-a"><?php echo $annonce['type'] ? 'Location' : 'Vente' ?> | € <?php echo $annonce['prix'] ?></span>
+                                </div>
+                                <a href="<?php echo 'Annonce.php?id=' . $annonce['annonce_id'] ?>" class="link-a">Click ici pour voir
+                                    <span class="ion-ios-arrow-forward"></span>
+                                </a>
+                            </div>
+                            <div class="card-footer-a testTay2">
+                                <ul class="card-info d-flex justify-content-around">
+                                    <li>
+
+                                        <a class="iconeSupp" data-idannonce="<?php echo $annonce['annonce_id'] ?>" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
+                                    </li>
+                                    <li>
+                                        <h4 class="card-info-title">Surface</h4>
+                                        <span><?php echo $annonce['surface'] . 'm' ?>
+                                            <sup>2</sup>
+                                        </span>
+                                    </li>
+                                    <li>
+
+                                        <a class="iconeModif" href="<?php echo 'ModifAnnonce.php?id=' . $annonce['annonce_id'] ?>"> <span><i class="fas fa-edit fa-2x"></i></span></a>
+                                    </li>
+                                    <!-- <li>
+                                        <h4 class="card-info-title">Garages</h4>
+                                        <span>1</span>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <?php } ?>
+
+        </div>
 
 <?php }
 }

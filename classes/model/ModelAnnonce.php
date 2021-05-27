@@ -1,5 +1,6 @@
 <?php
 require_once 'connexion.php';
+require_once '../utils/telechargement.php';
 class ModelAnnonce
 {
 
@@ -36,5 +37,17 @@ class ModelAnnonce
         WHERE annonce.id=?");
         $rPrep->execute([$id]);
         return $rPrep->fetch(pdo::FETCH_ASSOC);
+    }
+
+    //supprimer une znnoce
+    public static function suppAnnonce($id)
+    {
+        telechargement::effaceImg(self::annonceViaId($id)['photos']);
+
+        $datay = connexion();
+        $rPrep = $datay->prepare("DELETE FROM annonce WHERE annonce.id=?");
+        $rPrep->execute([$id]);
+        $rPrep2 = $datay->prepare("DELETE FROM user_annonce WHERE user_annonce.annonce_id=?");
+        $rPrep2->execute([$id]);
     }
 }

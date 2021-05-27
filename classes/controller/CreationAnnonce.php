@@ -69,6 +69,6 @@ if (!isset($_SESSION['id']) && empty($_SESSION['role'])) {
 }
 ?>
 <script>
-    validationClient('ajoutAnnonce', ['nom', 'surface', 'prix', 'adresse', 'cp', 'nom'])
+    validationClient('ajoutAnnonce', ['titre', 'surface', 'prix', 'adresse', 'cp', 'nom'])
     
 </script>

@@ -43,3 +43,22 @@ if (isset($_GET['id'])) {
 ViewTemplate::footer();
 ViewTemplate::baliseBottom();
 ?>
+<script>
+//activ modal, ajax
+    $('.iconeSupp').click(function(e) {
+        e.preventDefault()
+        let button = $(e.currentTarget)
+        console.log(button)
+        $('#modalSuppAnnonce').modal('show')
+        let idAnnonce = button.data('idannonce')
+        console.log(idAnnonce)
+        $('#validSuppAnnonce').click(function(e) {
+            console.log('tay')
+            generationAjax('SuppAnnonce.php', {
+                id: idAnnonce
+            }, 'html', 'listeAnnonce')
+            $('#fermeModal').click()
+            console.log('tay')
+        })
+    })
+</script>
