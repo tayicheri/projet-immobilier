@@ -8,17 +8,17 @@ require_once '../utils/constante.php';
 
 if (isset($_POST['idModifType'])) {
     $donnee = [$_POST['idModifType'], $_POST['newNom'], $_POST['nom']];
-    $type = ['id', 'nom', 'prenom'];
+    $type = ['id', 'nomtype', 'prenom'];
     $donneeok = testPreg::testInput($donnee, $type);
     if ($donneeok['ok']) {
         $donneeok = $donneeok['donnee'];
-        if (ModelTypeBien::typebienViaLibele($donneeok['nom'])) {
+        if (ModelTypeBien::typebienViaLibele($donneeok['nomtype'])) {
             ViewTemplate::alerte('secondary', 'ce libellé est déjà pris ', 'TypeBiens.php', 'retour ici');
         } else {
 
-            ModelTypeBien::modifType($donneeok['id'], $donneeok['nom']);
-            rename(ROOT_DIR . '/assets/img/' . $donneeok['prenom'] . '.jpg', ROOT_DIR . '/assets/img/' . $donneeok['nom'] . '.jpg');
-            ViewTypeBiens::listeTypeBiens3($donneeok['nom']);
+            ModelTypeBien::modifType($donneeok['id'], $donneeok['nomtype']);
+            rename(ROOT_DIR . '/assets/img/' . $donneeok['prenom'] . '.jpg', ROOT_DIR . '/assets/img/' . $donneeok['nomtype'] . '.jpg');
+            ViewTypeBiens::listeTypeBiens3($donneeok['nomtype']);
         }
     } else {
         ViewTemplate::alerte('danger', 'erreur de securite', 'TypeBiens.php', 'retour');

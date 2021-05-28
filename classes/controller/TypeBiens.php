@@ -15,18 +15,18 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 1) {
 
     if (isset($_POST['ajoutTypeBien'])) {
         $donnee = [$_POST['typeBien']];
-        $type = ['nom'];
+        $type = ['nomtype'];
         $donneeOk = testPreg::testInput($donnee, $type);
         if ($donneeOk['ok']) {
             $donneeOk = $donneeOk['donnee'];
 
-            if (!ModelTypeBien::typebienViaLibele($donneeOk['nom'])) {
+            if (!ModelTypeBien::typebienViaLibele($donneeOk['nomtype'])) {
 
                 $extensions = ['jpg'];
-                $dowload = telechargement::telecharge($_FILES['photo'], $extensions, 'assets/img', $donneeOk['nom']);
+                $dowload = telechargement::telecharge($_FILES['photo'], $extensions, 'assets/img', $donneeOk['nomtype']);
                 if ($dowload['ok']) {
                    
-                    ModelTypeBien::ajoutType($donneeOk['nom']);
+                    ModelTypeBien::ajoutType($donneeOk['nomtype']);
                     ViewTypeBiens::listeTypeBiens1();
                     ViewTemplate::alerte('success', 'ajout effectué', '', '');
                 } else {
@@ -60,7 +60,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 1) {
     })
 
     //validation client Ajout type
-    validationClient('formTypeBien', ['nom', 'file'])
+    validationClient('formTypeBien', ['nomType', 'file'])
 </script>
 <script>
     
@@ -91,7 +91,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 1) {
 
 
         $('#validModifType').click(function(e) {
-            let regexNom = /^[\p{L}\s]{2,15}$/u;
+            let regexNom = /./u;
             let v;
             regexNom.test($('#modifTypeBien').val()) ? v = true : v = false;
 

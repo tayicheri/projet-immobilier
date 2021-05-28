@@ -14,17 +14,22 @@ if (!isset($_SESSION['id'])) {
 
 
     if (isset($_POST['id'])) {
-        $donnee = [$_POST['id']];
-        $type = ['id'];
+        $donnee = [$_POST['id'], $_POST['ki']];
+        $type = ['id', 'role'];
         $donneeOk = testPreg::testInput($donnee, $type);
         if ($donneeOk['ok']) {
+           
+            if ($donneeOk['donnee']['role']) {
 
-            
-            ModelAnnonce::suppAnnonce($donneeOk['donnee']['id']);
+                ModelAnnonce::suppAnnonce($donneeOk['donnee']['id']);
 
 
-            $dataUser = new ModelUser($_SESSION['id']);
-            ViewAnnonce::retourMesAnnonces($dataUser->getAnnonces());
+                $dataUser = new ModelUser($_SESSION['id']);
+                ViewAnnonce::retourMesAnnonces($dataUser->getAnnonces());
+            } else {
+                ModelAnnonce::suppAnnonce($donneeOk['donnee']['id']);
+                ViewAnnonce::retourMesAnnonces(ModelAnnonce::annonceListe());
+            }
         } else {
             ViewTemplate::alerte('secondary', 'donne corompue', '', '');
         }

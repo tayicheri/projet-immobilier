@@ -3,7 +3,7 @@ tabRegex = {
   prenom: /^[\p{L}\s]{2,15}$/u,
   email: /^[a-zA-Z]+[\w]+[@][a-z\.\-]{1,20}[\.][a-z]{1,3}$/,
   tel: /^[+]?[0-9]{8,}$/,
-
+adresse:/^[0-9]*\s[a-zA-Z]*\s[a-zA-Z]*/,
   mdp: /./,
 };
 

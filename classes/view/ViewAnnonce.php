@@ -421,24 +421,50 @@ class ViewAnnonce
                                             </div>
                                             <div class="card-footer-a testTay2">
                                                 <ul class="card-info d-flex justify-content-around">
-                                                    <li>
 
-                                                        <a class="iconeSupp" data-idannonce="<?php echo $annonce['annonce_id'] ?>" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
-                                                    </li>
-                                                    <li>
-                                                        <h4 class="card-info-title">Surface</h4>
-                                                        <span><?php echo $annonce['surface'] . 'm' ?>
-                                                            <sup>2</sup>
-                                                        </span>
-                                                    </li>
-                                                    <li>
+                                                    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $annonce['user_id']) { ?>
+                                                        <li>
 
-                                                        <a class="iconeModif" href="<?php echo 'ModifAnnonce.php?id=' . $annonce['annonce_id'] ?>"> <span><i class="fas fa-edit fa-2x"></i></span></a>
-                                                    </li>
-                                                    <!-- <li>
-                                                        <h4 class="card-info-title">Garages</h4>
-                                                        <span>1</span>
-                                                    </li> -->
+                                                            <a class="iconeSupp" data-kimodif="1" data-idannonce="<?php echo $annonce['annonce_id'] ?>" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
+                                                        </li>
+                                                        <li>
+                                                            <h4 class="card-info-title">Surface</h4>
+                                                            <span><?php echo $annonce['surface'] . 'm' ?>
+                                                                <sup>2</sup>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+
+                                                            <a class="iconeModif" href="<?php echo 'ModifAnnonce.php?id=' . $annonce['annonce_id'] ?>"> <span><i class="fas fa-edit fa-2x"></i></span></a>
+                                                        </li>
+                                                        <!-- <li>
+                                                            <h4 class="card-info-title">Garages</h4>
+                                                            <span>1</span>
+                                                        </li> -->
+                                                    <?php } else if (isset($_SESSION['id']) && $_SESSION['role'] == 1) { ?> <li>
+
+                                                            <a class="iconeSupp" data-kimodif="0" data-idannonce="<?php echo $annonce['annonce_id'] ?>" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
+                                                        </li>
+                                                        <li>
+                                                            <h4 class="card-info-title">Surface</h4>
+                                                            <span><?php echo $annonce['surface'] . 'm' ?>
+                                                                <sup>2</sup>
+                                                            </span>
+                                                        </li>
+                                                    <?php } else { ?>
+                                                        <li>
+                                                            <h4 class="card-info-title">Surface</h4>
+                                                            <span><?php echo $annonce['surface'] . 'm' ?>
+                                                                <sup>2</sup>
+                                                            </span>
+                                                        </li>
+                                                    <?php
+                                                    } ?>
+
+
+
+
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -547,24 +573,44 @@ class ViewAnnonce
                             </div>
                             <div class="card-footer-a testTay2">
                                 <ul class="card-info d-flex justify-content-around">
-                                    <li>
+                                    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $annonce['user_id']) { ?>
+                                        <li>
 
-                                        <a class="iconeSupp" data-idannonce="<?php echo $annonce['annonce_id'] ?>" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
-                                    </li>
-                                    <li>
-                                        <h4 class="card-info-title">Surface</h4>
-                                        <span><?php echo $annonce['surface'] . 'm' ?>
-                                            <sup>2</sup>
-                                        </span>
-                                    </li>
-                                    <li>
+                                            <a class="iconeSupp" data-kimodif="1" data-idannonce="<?php echo $annonce['annonce_id'] ?>" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
+                                        </li>
+                                        <li>
+                                            <h4 class="card-info-title">Surface</h4>
+                                            <span><?php echo $annonce['surface'] . 'm' ?>
+                                                <sup>2</sup>
+                                            </span>
+                                        </li>
+                                        <li>
 
-                                        <a class="iconeModif" href="<?php echo 'ModifAnnonce.php?id=' . $annonce['annonce_id'] ?>"> <span><i class="fas fa-edit fa-2x"></i></span></a>
-                                    </li>
-                                    <!-- <li>
-                                        <h4 class="card-info-title">Garages</h4>
-                                        <span>1</span>
-                                    </li> -->
+                                            <a class="iconeModif" href="<?php echo 'ModifAnnonce.php?id=' . $annonce['annonce_id'] ?>"> <span><i class="fas fa-edit fa-2x"></i></span></a>
+                                        </li>
+                                        <!-- <li>
+                                                            <h4 class="card-info-title">Garages</h4>
+                                                            <span>1</span>
+                                                        </li> -->
+                                    <?php } else if (isset($_SESSION['id']) && $_SESSION['role'] == 1) { ?> <li>
+
+                                            <a class="iconeSupp" data-kimodif="0" data-idannonce="<?php echo $annonce['annonce_id'] ?>" href=""> <span><i class="fas fa-trash fa-2x"></i></span></a>
+                                        </li>
+                                        <li>
+                                            <h4 class="card-info-title">Surface</h4>
+                                            <span><?php echo $annonce['surface'] . 'm' ?>
+                                                <sup>2</sup>
+                                            </span>
+                                        </li>
+                                    <?php } else { ?>
+                                        <li>
+                                            <h4 class="card-info-title">Surface</h4>
+                                            <span><?php echo $annonce['surface'] . 'm' ?>
+                                                <sup>2</sup>
+                                            </span>
+                                        </li>
+                                    <?php
+                                    } ?>
                                 </ul>
                             </div>
                         </div>
@@ -584,10 +630,10 @@ class ViewAnnonce
         $donne1 = ModelAnnonce::annonceViaId($id1);
         $donne12 = explode(' ', $donne1['adresse']);
         $donne2 = ModelAnnonce::annonceViaId($id2);
-        $donne22 = explode(' ', $donne1['adresse']);
+        $donne22 = explode(' ', $donne2['adresse']);
         $donne3 = ModelAnnonce::annonceViaId($id3);
-        $donne32 = explode(' ', $donne1['adresse']);
-        // var_dump($donne12, $donne22, $donne32);
+        $donne32 = explode(' ', $donne3['adresse']);
+        // var_dump($donne12, $donne22, $donne32,json_decode($donne3['photos'], true)['photoP'] );
     ?>
         <div class="intro intro-carousel">
             <div id="carousel" class="owl-carousel owl-theme">
@@ -615,7 +661,7 @@ class ViewAnnonce
                                                         echo $t; ?>
                                             </h1>
                                             <p class="intro-subtitle intro-price">
-                                                <a href="<?= 'Annonce.php?id='.$donne1['annonce_id'] ?>"><span class="price-a"><?= $donne1['type'] == 0 ? 'vente' : 'location' ?> | $ <?= $donne1['prix'] ?></span></a>
+                                                <a href="<?= 'Annonce.php?id=' . $donne1['annonce_id'] ?>"><span class="price-a"><?= $donne1['type'] == 0 ? 'vente' : 'location' ?> | $ <?= $donne1['prix'] ?></span></a>
                                             </p>
                                         </div>
                                     </div>
@@ -636,7 +682,7 @@ class ViewAnnonce
                                                 <br> <?= $donne1['cp'] ?>
                                             </p>
                                             <h1 class="intro-title mb-4">
-                                            <span class="color-b"><?= $donne12[0] ?> </span> <?= $donne12[1] ?>
+                                                <span class="color-b"><?= $donne22[0] ?> </span> <?= $donne22[1] ?>
                                                 <br> <?php $t = '';
                                                         for ($i = 0; $i < count($donne22); $i++) {
                                                             if ($i == 0 || $i == 1) {
@@ -648,7 +694,7 @@ class ViewAnnonce
                                                         echo $t; ?>
                                             </h1>
                                             <p class="intro-subtitle intro-price">
-                                                <a href="<?= 'Annonce.php?id='.$donne2['annonce_id'] ?>"><span class="price-a"><?= $donne2['type'] == 0 ? 'vente' : 'location' ?> | $ <?= $donne2['prix'] ?></span></a>
+                                                <a href="<?= 'Annonce.php?id=' . $donne2['annonce_id'] ?>"><span class="price-a"><?= $donne2['type'] == 0 ? 'vente' : 'location' ?> | $ <?= $donne2['prix'] ?></span></a>
                                             </p>
                                         </div>
                                     </div>
@@ -669,7 +715,7 @@ class ViewAnnonce
                                                 <br> <?= $donne1['cp'] ?>
                                             </p>
                                             <h1 class="intro-title mb-4">
-                                            <span class="color-b"><?= $donne32[0] ?> </span> <?= $donne32[1] ?>
+                                                <span class="color-b"><?= $donne32[0] ?> </span> <?= $donne32[1] ?>
                                                 <br> <?php $t = '';
                                                         for ($i = 0; $i < count($donne32); $i++) {
                                                             if ($i == 0 || $i == 1) {
@@ -681,7 +727,7 @@ class ViewAnnonce
                                                         echo $t; ?>
                                             </h1>
                                             <p class="intro-subtitle intro-price">
-                                                <a href="<?= 'Annonce.php?id='.$donne3['annonce_id'] ?>"><span class="price-a"><?= $donne3['type'] == 0 ? 'vente' : 'location' ?> | $ <?= $donne3['prix'] ?></span></a>
+                                                <a href="<?= 'Annonce.php?id=' . $donne3['annonce_id'] ?>"><span class="price-a"><?= $donne3['type'] == 0 ? 'vente' : 'location' ?> | $ <?= $donne3['prix'] ?></span></a>
                                             </p>
                                         </div>
                                     </div>
@@ -692,6 +738,96 @@ class ViewAnnonce
                 </div>
             </div>
         </div><!-- End Intro Section -->
+
+
+    <?php }
+
+    public static function derniereAnonce()
+    { ?>
+
+        <!-- ======= Latest Properties Section ======= -->
+        <section class="section-property section-t8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-wrap d-flex justify-content-between">
+                            <div class="title-box">
+                                <h2 class="title-a">Dernieres Annonces</h2>
+                            </div>
+                            <div class="title-link">
+                                <a href="Annonce.php?touteAnnonce=1">Toutes les Annonces
+                                    <span class="ion-ios-arrow-forward"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="property-carousel" class="owl-carousel owl-theme">
+
+
+                    <?php
+
+                    $donnee = ModelAnnonce::annonceListederniere();
+
+                    foreach ($donnee as $annonce) { ?>
+                        <div class="carousel-item-b">
+                            <div class="card-box-a card-shadow">
+                                <div class="img-box-a">
+                                    <img src="<?= '../../images/' . json_decode($annonce['photos'], true)['photoP'] ?>" alt="" class="img-a img-fluid">
+                                </div>
+                                <div class="card-overlay">
+                                    <div class="card-overlay-a-content">
+                                        <div class="card-header-a">
+                                            <h2 class="card-title-a">
+                                                <a href="<?php echo 'Annonce.php?id=' . $annonce['annonce_id'] ?>"><?= explode(' ', $annonce['adresse'])[0] . ' ' . explode(' ', $annonce['adresse'])[1] ?>
+                                                    <br /><?php $t = '';
+                                                            for ($i = 0; $i < count(explode(' ', $annonce['adresse'])); $i++) {
+                                                                if ($i == 0 || $i == 1) {
+                                                                    continue;
+                                                                } else {
+                                                                    $t .= explode(' ', $annonce['adresse'])[$i];
+                                                                };
+                                                            }
+                                                            echo $t; ?></a>
+                                            </h2>
+                                        </div>
+                                        <div class="card-body-a">
+                                            <div class="price-box d-flex">
+                                                <span class="price-a"><?php echo $annonce['type'] ? 'Location' : 'Vente' ?> | € <?php echo $annonce['prix'] ?></span>
+                                            </div>
+                                            <a href="<?php echo 'Annonce.php?id=' . $annonce['annonce_id'] ?>" class="link-a">Click ici pour voir
+                                                <span class="ion-ios-arrow-forward"></span>
+                                            </a>
+                                        </div>
+                                        <div class="card-footer-a">
+                                            <ul class="card-info d-flex justify-content-around">
+
+                                                <li>
+                                                    <h4 class="card-info-title">Surface</h4>
+                                                    <span><?php echo $annonce['surface'] . 'm' ?>
+                                                        <sup>2</sup>
+                                                    </span>
+                                                </li>
+
+                                                <!-- <li>
+                                                    <h4 class="card-info-title">Garages</h4>
+                                                    <span>1</span>
+                                                </li> -->
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    } ?>
+
+                </div>
+            </div>
+        </section><!-- End Latest Properties Section -->
+
 
 
 <?php }

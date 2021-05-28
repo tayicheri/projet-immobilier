@@ -7,18 +7,8 @@ require_once '../utils/TestPreg.php';
 ViewTemplate::baliseTop();
 
 ViewTemplate::navBar();
-ViewAnnonce::grosCarousel(10,11,12);
-?><div >
-    <?php
+ViewAnnonce::grosCarousel(1,4,5);
 
-    var_dump($_SESSION);
-
-
-
-    ?>
-</div>
-
-<?php
 
 if (isset($_GET['alert'])) {
     $donnee = [$_GET['alert']];
@@ -28,6 +18,13 @@ if (isset($_GET['alert'])) {
         ViewTemplate::alerte('secondary', $donneeOk['donnee']['alert'], '', '');
     }
 }
+ViewTemplate::baliseMain(1);
+ViewTemplate::nosServices();
+ViewAnnonce::derniereAnonce();
+
+
+ViewTemplate::baliseMain(0);
 
 ViewTemplate::footer();
 ViewTemplate::baliseBottom();
+?>

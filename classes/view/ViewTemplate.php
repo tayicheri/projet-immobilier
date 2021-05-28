@@ -175,10 +175,10 @@ class ViewTemplate
                             <a class="nav-link p-md-2 bg-success text-white rounded-pill" href="CreationAnnonce.php">Deposer une annonce</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">Acheter</a>
+                            <a class="nav-link" href="Acheter.php">Acheter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="property-grid.html">louer</a>
+                            <a class="nav-link" href="Louer.php">louer</a>
                         </li>
 
                         <?php if (isset($_SESSION['id'])) { ?>
@@ -298,5 +298,106 @@ class ViewTemplate
         <div class="alert text-center alert-<?php echo $type ?>" role="alert">
             <?php echo $message ?> <a href="<?php echo $lien ?>"><?php echo $messageLien ?></a>
         </div>
+        <?php }
+
+    public static function baliseMain($AouB)
+    {
+        if ($AouB) { ?>
+            <main id="main">
+            <?php } else { ?>
+            </main><!-- End #main -->
+        <?php }
+    }
+
+    public static function nosServices()
+    { ?>
+        <!-- ======= Services Section ======= -->
+        <section class="section-services section-t8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-wrap d-flex justify-content-between">
+                            <div class="title-box">
+                                <h2 class="title-a">Nos Services</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card-box-c foo">
+                            <div class="card-header-c d-flex">
+                                <div class="card-box-ico">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <div class="card-title-c align-self-center">
+                                    <h2 class="title-c">Log'Tay.fr</h2>
+                                </div>
+                            </div>
+                            <div class="card-body-c">
+                                <p class="content-c">
+                                    Une plateforme de suivi en ligne fluide qui est mis a jour regulierement. Nos agents s'occupent de faire la modération pour assurer a nos utilisateur
+                                    la meilleur des experiences.
+                                </p>
+                            </div>
+                            <div class="card-footer-c">
+                                <!-- <a href="#" class="link-c link-icon">Read more
+                                    <span class="ion-ios-arrow-forward"></span>
+                                </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-box-c foo">
+                            <div class="card-header-c d-flex">
+                                <div class="card-box-ico">
+                                    <i class="fas fa-euro-sign"></i>
+                                </div>
+                                <div class="card-title-c align-self-center">
+                                    <h2 class="title-c">Location</h2>
+                                </div>
+                            </div>
+                            <div class="card-body-c">
+                                <p class="content-c">
+                                    Vous chercher à louer un bien?
+                                    Notre rubrique "louer" regroupe des milliers d'annonces dans lesquelles vous attend votre reve.
+                                </p>
+                            </div>
+                            <div class="card-footer-c">
+                                <a href="Louer.php" class="link-c link-icon">Cliquez ici
+                                    <span class="ion-ios-arrow-forward"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-box-c foo">
+                            <div class="card-header-c d-flex">
+                                <div class="card-box-ico">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="card-title-c align-self-center">
+                                    <h2 class="title-c">Vente</h2>
+                                </div>
+                            </div>
+                            <div class="card-body-c">
+                                <p class="content-c">
+                                    Vous souhaitez vendre votre bien?
+                                    Ajouter une annonce qui sera consulté par des milliers d'acheteur potentiel.
+                                    Transaction garantie.
+
+
+                                </p>
+                            </div>
+                            <div class="card-footer-c">
+                                <a href="CreationAnnonce.php" class="link-c link-icon">Cliquez ici
+                                    <span class="ion-ios-arrow-forward"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Services Section -->
 <?php }
 }

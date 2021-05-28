@@ -33,6 +33,10 @@ if (isset($_GET['id'])) {
     } else {
         header('location:ConnexionUser.php');
     }
+} else if (isset($_GET['touteAnnonce'])) {
+    ViewTemplate::baliseTop();
+    ViewTemplate::navBar();
+    ViewAnnonce::mesAnnonces(ModelAnnonce::annonceListe());
 } else {
     header('location:Accueil.php');
 }
@@ -44,18 +48,20 @@ ViewTemplate::footer();
 ViewTemplate::baliseBottom();
 ?>
 <script>
-//activ modal, ajax
+    //activ modal, ajax
     $('.iconeSupp').click(function(e) {
         e.preventDefault()
         let button = $(e.currentTarget)
         console.log(button)
         $('#modalSuppAnnonce').modal('show')
         let idAnnonce = button.data('idannonce')
-        console.log(idAnnonce)
+        let kimodif = button.data('kimodif')
+        console.log(idAnnonce,kimodif)
         $('#validSuppAnnonce').click(function(e) {
             console.log('tay')
             generationAjax('SuppAnnonce.php', {
-                id: idAnnonce
+                id: idAnnonce,
+                ki: kimodif
             }, 'html', 'listeAnnonce')
             $('#fermeModal').click()
             console.log('tay')
