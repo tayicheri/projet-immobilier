@@ -15,7 +15,7 @@ if (isset($_GET['alert'])) {
     $type = ['alert'];
     $donneeOk = testPreg::testInput($donnee, $type);
     if ($donneeOk['ok']) {
-        ViewTemplate::alerte('secondary', $donneeOk['donnee']['alert'], '', '');
+        ViewTemplate::alerte('secondary text-danger mt-5', $donneeOk['donnee']['alert'], '', '');
     }
 }
 ViewTemplate::baliseMain(1);

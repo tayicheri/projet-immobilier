@@ -58,7 +58,7 @@ class ViewAnnonce
                                 <label for="Prenom">Type de Bien</label>
                                 <select name="typeBienAnnonce" id="typeBienAnnonce" class="custom-select">
 
-                                    <option selected>Open this select menu</option>
+                                    <option <?php echo isset($_POST['validerAjoutAnnonce']) ? '' : 'selected' ?>>Choisir le Type de Bien</option>
                                     <?php foreach ($typeBien as $type) { ?>
                                         <option value="<?php echo $type['id'] ?>" <?php echo (isset($_POST['validerAjoutAnnonce'])) && ($_POST['typeBienAnnonce'] == $type['id']) ? 'selected' : '' ?>><?php echo $type['libelle'] ?></option>
 
@@ -830,5 +830,192 @@ class ViewAnnonce
 
 
 
+    <?php }
+
+    public static function modifAnnonces($annonce)
+    {
+        $typeBien = ModelTypeBien::typeBiens();
+    ?>
+
+        <main id="main">
+
+            <!-- ======= Intro Single ======= -->
+            <section class="intro-single">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-8">
+                            <div class="title-single-box">
+                                <h1 class="title-single">Je Modifie Mon Annonce</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
+                            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="Accueil.php">Accueil</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        Modif Annonce
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- FORMULAIRE De Modif ANNONCE  -->
+                    <div>
+                        <form class="row" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" id="modifAnnonce" method="POST" enctype="multipart/form-data">
+                            <div class="form-group col-md-12">
+                                <label for="nom">Titre</label>
+                                <input type="text" class="form-control" value="<?php echo isset($_POST['validerModifAnnonce']) ? $_POST['titre'] : $annonce['titre'] ?>" id="titre" name="titre">
+                            </div>
+
+
+                            <div class="form-group col-md-4">
+                                <label for="Prenom">Type d'offre</label>
+                                <select name="type" id="type" class="custom-select">
+
+
+                                    <option value="1" <?php echo (isset($_POST['validerModifAnnonce']) && ($_POST['type'] == 1)) || $annonce['type'] == 1 ? 'selected' : '' ?>>Location</option>
+                                    <option value="0" <?php echo (isset($_POST['validerModifAnnonce']) && ($_POST['type'] == 0)) || $annonce['type'] == 0 ? 'selected' : '' ?>>Vente</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Prenom">Type de Bien</label>
+                                <select name="typeBienAnnonce" id="typeBienAnnonce" class="custom-select">
+
+
+                                    <?php foreach ($typeBien as $type) { ?>
+                                        <option value="<?php echo $type['id'] ?>" <?php echo (isset($_POST['validerModifAnnonce']) && ($_POST['typeBienAnnonce'] == $type['id'])) || $annonce['type_bien_id'] == $type['id'] ? 'selected' : '' ?>><?php echo $type['libelle'] ?></option>
+
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="Prenom">Surface</label>
+                                <input type="number" class="form-control" value="<?php echo isset($_POST['validerModifAnnonce']) ? $_POST['surface'] : $annonce['surface'] ?>" id="surface" name="surface">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="tel">Prix</label>
+                                <input type="number" class="form-control" value="<?php echo isset($_POST['validerModifAnnonce']) ? $_POST['prix'] : $annonce['prix'] ?>" id="prix" name="prix">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="description">description</label>
+                                <textarea class="form-control" id="description" name="description" rows="9"><?php echo isset($_POST['validerModifAnnonce']) ? $_POST['description'] : $annonce['descriptions'] ?></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label for="mdp">Adresse</label>
+                                    <input type="text" class="form-control" value="<?php echo isset($_POST['validerModifAnnonce']) ? $_POST['adresse'] : $annonce['adresse'] ?>" id="adresse" name="adresse">
+                                </div>
+                                <div class="form-group ">
+                                    <label for="mdp">Code Postal</label>
+                                    <input type="number" class="form-control" value="<?php echo isset($_POST['validerModifAnnonce']) ? $_POST['cp'] : $annonce['cp'] ?>" id="cp" name="cp">
+                                </div>
+                                <div class="form-group">
+                                    <label for="mdp">Ville</label>
+                                    <input type="text" class="form-control" value="<?php echo isset($_POST['validerModifAnnonce']) ? $_POST['ville'] : $annonce['ville'] ?>" id="ville" name="ville">
+                                </div>
+                            </div>
+
+
+                            <!-- affichage immage de l'annonce en modfi -->
+                            <div class="row" id="immageAnnonce">
+
+                                <?php $photo = json_decode($annonce['photos'], true);
+
+                                foreach ($photo as $cle => $miniature) {
+
+                                    if (is_int($cle)) {  ?>
+                                        <div><a href="" data-image="<?= $miniature  ?>" data-toggle="modal" data-target="#modalPhoto"><img class="img-thumbnail img-fluid" src="../../images/<?= $miniature ?>"></a></div>
+                                    <?php  } else { ?>
+                                        <div><a href="" id="photoP" data-toggle="modal" data-target="#modalPhotoP"><img class="img-thumbnail img-fluid" src="../../images/<?= $miniature ?>"></a></div>
+                                <?php }
+                                } ?>
+                                <div type="button" id="ajoutPhoto" class="btn btn-warning d-flex align-items-center text-secondary"><i class="fas fa-plus"></i></div>
+                            </div>
+
+
+
+
+
+
+                            <div class="custom-file ml-3 d-none mt-4 col-md-12">
+                                <input type="file" class="custom-file-input" name="photos[]" id="photos" multiple accept="image/*">
+                                <label class="custom-file-label col-md-12" id="labelPhotos" for="customFile">Autres Photos</label>
+                            </div>
+
+                            <div class="col-md-12 mt-2">
+                                <button type="submit" name="validerModifAnnonce" id="validerModifAnnonce" value="<?= $annonce['annonce_id'] ?>" class="btn btn-success">valider</button>
+                                <button type="reset" class="btn btn-secondary ml-2">effacer</button>
+                            </div>
+                        </form>
+                        <!-- Modal PHOTO -->
+                        <div class="modal fade" id="modalPhoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Supprimer photo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        etes vous sure de supprimer la photo?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="fermeModalSup" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                        <button type="button" id="suppImg" class="btn btn-success">Supprimer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal PHOTOP -->
+                        <div class="modal fade" id="modalPhotoP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modif de la photo principale</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="custom-file ml-3  col-md-12">
+                                            <input type="file" class="custom-file-input" name="photoP" id="photoP" accept="image/*">
+                                            <label class="custom-file-label col-md-12" id="labelPhotoP" for="customFile">photo Principal</label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                        <button type="button" class="btn btn-success">Remplacer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section><!-- End Intro Single-->
+        </main>
+
+
+
+
+
+        <?php  }
+
+
+    public static function listeImg($photo)
+    {
+        foreach ($photo as $cle => $miniature) {
+
+            if (is_int($cle)) {  ?>
+                <div><a href="" data-image="<?= $miniature  ?>" data-toggle="modal" data-target="#modalPhoto"><img class="img-thumbnail img-fluid" src="../../images/<?= $miniature ?>"></a></div>
+            <?php  } else { ?>
+                <div><a href="" id="photoP" data-toggle="modal" data-target="#modalPhotoP"><img class="img-thumbnail img-fluid" src="../../images/<?= $miniature ?>"></a></div>
+        <?php }
+        } ?>
+        <div type="button" id="ajoutPhoto" class="btn btn-warning d-flex align-items-center text-secondary"><i class="fas fa-plus"></i></div>
 <?php }
 }

@@ -26,6 +26,27 @@ class ModelAnnonce
         return $idAnnonce;
     }
 
+    //modif Annonce
+    public static function modifAnnonce($titre, $type, $typeBien, $surface, $prix, $description, $adresse, $cp, $ville, $imgJson, $id)
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("UPDATE annonce SET titre=:titre,descriptions=:descriptions,surface=:surface,photos=:photos,adresse=:adresse,ville=:ville,cp=:cp,prix=:prix,type=:type,type_bien_id=:typeBien_id WHERE id=:id");
+        $rPrep->execute([
+            ':titre' => $titre,
+            ':descriptions' => $description,
+            ':surface' => $surface,
+            ':photos' => $imgJson,
+            ':adresse' => $adresse,
+            ':ville' => $ville,
+            ':cp' => $cp,
+            ':prix' => $prix,
+            ':type' => $type,
+            ':typeBien_id' => $typeBien,
+            ':id' => $id
+        ]);
+    }
+
+
     public static function annonceViaId($id)
     {
         $datay = connexion();
@@ -90,6 +111,16 @@ class ModelAnnonce
         $rPrep2->execute([$id]);
     }
 
+    //supprimer une photo
+
+    public static function suppImg($photoJson, $photoEfface, $annonceId)
+    {
+        unlink('../../images/' . $photoEfface);
+        $datay = connexion();
+        $rPrep = $datay->prepare("UPDATE annonce SET photos=? WHERE annonce.id=?");
+        $rPrep->execute([$photoJson, $annonceId]);
+    }
+
     //recherche
     public static function recherche($type, $ville, $typeBien, $surfaceMin, $surfaceMax, $prixMax)
     {
@@ -102,10 +133,6 @@ class ModelAnnonce
         $typeBien == 0 ? $typeBien = '%%' : '';
         $surfaceMin != 0 ? $recherche .= 'AND (surface BETWEEN ? AND ?) ' : '';
         $prixMax != 0 ? $recherche .= '  AND prix<=?' : '';
-
-
-
-        echo $recherche;
 
 
         $datay = connexion();
