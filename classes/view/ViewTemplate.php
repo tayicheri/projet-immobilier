@@ -1,4 +1,7 @@
 <?php
+require_once '../model/ModelAnnonce.php';
+require_once '../model/ModelTypeBien.php';
+require_once '../model/ModelUser.php';
 class ViewTemplate
 {
 
@@ -62,95 +65,86 @@ class ViewTemplate
     <?php  }
 
     public static function navBar()
-    { ?>
+    {
+        $data = ModelAnnonce::annonceListe();
+        $dataTypeBien = ModelTypeBien::typeBiens();
+    ?>
         <!-- ======= Property Search Section ======= -->
         <div class="click-closed"></div>
         <!--/ Form Search Star /-->
         <div class="box-collapse">
             <div class="title-box-d">
-                <h3 class="title-d">Search Property</h3>
+                <h3 class="title-d">Rechercher une Annonce</h3>
             </div>
             <span class="close-box-collapse right-boxed ion-ios-close"></span>
             <div class="box-collapse-wrap form">
-                <form class="form-a">
+                <form class="form-a" action="Recherche.php" method="POST">
                     <div class="row">
-                        <div class="col-md-12 mb-2">
+                        <!-- <div class="col-md-12 mb-2">
                             <div class="form-group">
                                 <label for="Type">Keyword</label>
                                 <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-6 mb-2">
                             <div class="form-group">
                                 <label for="Type">Type</label>
-                                <select class="form-control form-control-lg form-control-a" id="Type">
-                                    <option>All Type</option>
-                                    <option>For Rent</option>
-                                    <option>For Sale</option>
-                                    <option>Open House</option>
+                                <select class="form-control form-control-lg form-control-a" name="Type" id="Type">
+                                    <option value="0" <?= isset($_POST['recherche']) && $_POST['Type'] == 0 ? 'selected' : '' ?>>Tous</option>
+                                    <option value="1" <?= isset($_POST['recherche']) && $_POST['Type'] == 1 ? 'selected' : '' ?>>A Louer</option>
+                                    <option value="2" <?= isset($_POST['recherche']) && $_POST['Type'] == 2 ? 'selected' : '' ?>>A Vendre</option>
+
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="form-group">
-                                <label for="city">City</label>
-                                <select class="form-control form-control-lg form-control-a" id="city">
-                                    <option>All City</option>
-                                    <option>Alabama</option>
-                                    <option>Arizona</option>
-                                    <option>California</option>
-                                    <option>Colorado</option>
+                                <label for="city">Ville</label>
+                                <select class="form-control form-control-lg form-control-a" name="ville" id="ville">
+                                    <option value="0" <?= isset($_POST['recherche']) && $_POST['ville'] == 0 ? 'selected' : '' ?>>Partout</option>
+                                    <?php foreach ($data as $annonce) { ?> <option value="<?= $annonce['cp'] ?>" <?= isset($_POST['recherche']) && $_POST['ville'] == $annonce['cp'] ? 'selected' : '' ?>><?= $annonce['ville'] ?> </option> <?php } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6 mb-2">
                             <div class="form-group">
-                                <label for="bedrooms">Bedrooms</label>
-                                <select class="form-control form-control-lg form-control-a" id="bedrooms">
-                                    <option>Any</option>
-                                    <option>01</option>
-                                    <option>02</option>
-                                    <option>03</option>
+                                <label for="bedrooms">Type d'offre</label>
+                                <select class="form-control form-control-lg form-control-a" name="typeBien" id="typeBien">
+                                    <option value="0" <?= isset($_POST['recherche']) && $_POST['typeBien'] == 0 ? 'selected' : '' ?>>Tous</option>
+                                    <?php foreach ($dataTypeBien as $typebien) { ?> <option value="<?= $typebien['id'] ?>" <?= isset($_POST['recherche']) && $_POST['typeBien'] == $typebien['id'] ? 'selected' : '' ?>><?= $typebien['libelle'] ?> </option> <?php } ?>
+
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-2">
-                            <div class="form-group">
-                                <label for="garages">Garages</label>
-                                <select class="form-control form-control-lg form-control-a" id="garages">
-                                    <option>Any</option>
-                                    <option>01</option>
-                                    <option>02</option>
-                                    <option>03</option>
-                                    <option>04</option>
-                                </select>
+                        <div class="col-md-12 mb-2 row">
+                            <div class="form-group col-md-4">
+                                <label for="garages">surface min</label>
+                                <input type="number" name="surfaceMin" id="surfaceMin" min="1" class="form-control  form-control-lg form-control-a" value="<?= isset($_POST['recherche']) ? $_POST['surfaceMin'] : '9'  ?>">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="surface">surface max</label>
+                                <input type="number" name="surfaceMax" id="surfaceMax" min="9" class="form-control form-control-lg form-control-a" value="<?= isset($_POST['recherche']) ? $_POST['surfaceMax'] : '50'  ?>">
+                            </div>
+                            <div class="form-check form-check-inline pt-2">
+                                <input class="form-check-input" type="checkbox" name="surfaceC" id="surfaceC" <?= isset($_POST['surfaceC']) ? 'checked' : ''  ?>>
+                                <label class="form-check-label" for="surface">Toutes Les Surfaces</label>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-2">
-                            <div class="form-group">
-                                <label for="bathrooms">Bathrooms</label>
-                                <select class="form-control form-control-lg form-control-a" id="bathrooms">
-                                    <option>Any</option>
-                                    <option>01</option>
-                                    <option>02</option>
-                                    <option>03</option>
-                                </select>
+
+
+                        <div class="col-md-12 mb-2 row">
+                            <div class="form-group col-md-7">
+                                <label for="prix">Max Price</label>
+                                <input type="number" name="prixMax" id="prixMax" min="1" class="form-control form-control-lg form-control-a" value="<?= isset($_POST['recherche']) ? $_POST['prixMax'] : '800'  ?>">
                             </div>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <div class="form-group">
-                                <label for="price">Min Price</label>
-                                <select class="form-control form-control-lg form-control-a" id="price">
-                                    <option>Unlimite</option>
-                                    <option>$50,000</option>
-                                    <option>$100,000</option>
-                                    <option>$150,000</option>
-                                    <option>$200,000</option>
-                                </select>
+                            <div class="form-check  form-check-inline pt-2">
+                                <input class="form-check-input" type="checkbox" name="prixMaxC" id="prixMaxC" <?= isset($_POST['prixMaxC']) ? 'checked' : ''  ?>>
+                                <label class="form-check-label" for="inlineCheckbox1">Tout les Prix</label>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-b">Search Property</button>
+                            <button type="submit" name="recherche" class="btn btn-b">Rechercher</button>
+
                         </div>
                     </div>
                 </form>

@@ -51,6 +51,19 @@ class ModelAnnonce
         $rPrep->execute([]);
         return $rPrep->fetchAll(pdo::FETCH_ASSOC);
     }
+    //anonce liste avec parametre
+    public static function annonceListeVL($type)
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("SELECT annonce_id,titre,descriptions,surface,photos,adresse,ville,cp,prix,type,type_bien_id,user_id,nom,prenom,mail,tel FROM annonce
+        INNER JOIN user_annonce
+        ON annonce.id=user_annonce.annonce_id
+        INNER JOIN user 
+        ON user_annonce.user_id=user.id
+        WHERE type=? ");
+        $rPrep->execute([$type]);
+        return $rPrep->fetchAll(pdo::FETCH_ASSOC);
+    }
     //anonce liste des dernieres annonce
     public static function annonceListederniere()
     {
@@ -75,5 +88,38 @@ class ModelAnnonce
         $rPrep->execute([$id]);
         $rPrep2 = $datay->prepare("DELETE FROM user_annonce WHERE user_annonce.annonce_id=?");
         $rPrep2->execute([$id]);
+    }
+
+    //recherche
+    public static function recherche($type, $ville, $typeBien, $surfaceMin, $surfaceMax, $prixMax)
+    {
+        $recherche = "SELECT annonce_id,titre,descriptions,surface,photos,adresse,ville,cp,prix,type,type_bien_id,user_id,nom,prenom,mail,tel FROM annonce  
+        INNER JOIN user_annonce ON annonce.id=user_annonce.annonce_id  
+        INNER JOIN user  ON user_annonce.user_id=user.id 
+        WHERE type LIKE ? AND cp LIKE ? AND type_bien_id LIKE ? ";
+        $type == 0 ? $type = '%%' : '';
+        $ville == 0 ? $ville = '%%' : '';
+        $typeBien == 0 ? $typeBien = '%%' : '';
+        $surfaceMin != 0 ? $recherche .= 'AND (surface BETWEEN ? AND ?) ' : '';
+        $prixMax != 0 ? $recherche .= '  AND prix<=?' : '';
+
+
+
+        echo $recherche;
+
+
+        $datay = connexion();
+        $rPrep = $datay->prepare($recherche);
+        if ($surfaceMin == 0 && $prixMax == 0) {
+            $rPrep->execute([$type, $ville, $typeBien]);
+        } else if ($surfaceMin == 0) {
+            $rPrep->execute([$type, $ville, $typeBien, $prixMax]);
+        } else if ($prixMax == 0) {
+            $rPrep->execute([$type, $ville, $typeBien, $surfaceMin, $surfaceMax]);
+        } else {
+            $rPrep->execute([$type, $ville, $typeBien, $surfaceMin, $surfaceMax, $prixMax]);
+        }
+
+        return $rPrep->fetchAll(pdo::FETCH_ASSOC);
     }
 }
