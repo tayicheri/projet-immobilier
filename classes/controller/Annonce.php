@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
         ViewTemplate::navBar();
         $dataUser = new ModelUser($_SESSION['id']);
         if ($dataUser->getAnnonces()) {
-            ViewAnnonce::mesAnnonces($dataUser->getAnnonces());
+            ViewAnnonce::mesAnnonces('Mes Annonces', $dataUser->getAnnonces());
         } else {
             ViewTemplate::alerte('secondary " style="margin-top:250px;" ', 'Vous n\'avez auccune Annonce,Ajouter une annonce', 'CreationAnnonce.php', 'ici');
         }
@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
 } else if (isset($_GET['touteAnnonce'])) {
     ViewTemplate::baliseTop();
     ViewTemplate::navBar();
-    ViewAnnonce::mesAnnonces(ModelAnnonce::annonceListe());
+    ViewAnnonce::mesAnnonces('Les Annonces', ModelAnnonce::annonceListe());
 } else {
     header('location:Accueil.php');
 }
@@ -56,7 +56,7 @@ ViewTemplate::baliseBottom();
         $('#modalSuppAnnonce').modal('show')
         let idAnnonce = button.data('idannonce')
         let kimodif = button.data('kimodif')
-        console.log(idAnnonce,kimodif)
+        console.log(idAnnonce, kimodif)
         $('#validSuppAnnonce').click(function(e) {
             console.log('tay')
             generationAjax('SuppAnnonce.php', {

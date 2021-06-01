@@ -29,7 +29,7 @@ if (isset($_POST['recherche'])) {
             ViewTemplate::alerte('success" style="margin-top:70px;margin-bottom:-115px;"', 'desolé, aucun resultat trouver.', '', '');
             ViewAnnonce::derniereAnonce();
         } else {
-            ViewAnnonce::mesAnnonces($liste);
+            ViewAnnonce::mesAnnonces('Recherche',$liste);
         }
     } else {
         ViewTemplate::alerte('secondary style="padding-top:255px;"', 'donné corompue', '', '');

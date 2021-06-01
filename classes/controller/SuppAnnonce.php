@@ -18,7 +18,7 @@ if (!isset($_SESSION['id'])) {
         $type = ['id', 'role'];
         $donneeOk = testPreg::testInput($donnee, $type);
         if ($donneeOk['ok']) {
-           
+
             if ($donneeOk['donnee']['role']) {
 
                 ModelAnnonce::suppAnnonce($donneeOk['donnee']['id']);
@@ -65,11 +65,13 @@ if (!isset($_SESSION['id'])) {
         console.log(button)
         $('#modalSuppAnnonce').modal('show')
         let idAnnonce = button.data('idannonce')
-        console.log(idAnnonce)
+        let kimodif = button.data('kimodif')
+        console.log(idAnnonce, kimodif)
         $('#validSuppAnnonce').click(function(e) {
             console.log('tay')
             generationAjax('SuppAnnonce.php', {
-                id: idAnnonce
+                id: idAnnonce,
+                ki: kimodif
             }, 'html', 'listeAnnonce')
             $('#fermeModal').click()
             console.log('tay')

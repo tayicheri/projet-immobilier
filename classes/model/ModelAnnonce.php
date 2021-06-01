@@ -121,6 +121,16 @@ class ModelAnnonce
         $rPrep->execute([$photoJson, $annonceId]);
     }
 
+    //modif la photo principal
+
+    public static function modifPhotoP($photop,$photoJson ,$annonceId)
+    {
+        unlink('../../images/' . $photop);
+        $datay = connexion();
+        $rPrep = $datay->prepare("UPDATE annonce SET photos=? WHERE annonce.id=?");
+        $rPrep->execute([$photoJson, $annonceId]);
+    }
+
     //recherche
     public static function recherche($type, $ville, $typeBien, $surfaceMin, $surfaceMax, $prixMax)
     {

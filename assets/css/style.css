@@ -31,6 +31,10 @@ a:hover {
   color: #2eca6a;
   text-decoration: none;
 }
+.lientay:hover {
+  color: #C93443;
+  text-decoration: none;
+}
 
 .link-two {
   color: #000000;
@@ -2189,5 +2193,3 @@ footer .copyright-footer {
 footer .credits {
   font-size: 14px;
 }
-
-

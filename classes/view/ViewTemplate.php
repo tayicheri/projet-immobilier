@@ -181,8 +181,8 @@ class ViewTemplate
                                     <?php echo $_SESSION['nom'] ?>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="">Mon profil</a>
-                                    <a class="dropdown-item" href="">Mes favoris</a>
+                                    <a class="dropdown-item" href="Profil.php">Mon profil</a>
+                                    <a class="dropdown-item" href="Favoris.php">Mes favoris</a>
                                     <a class="dropdown-item" href="Annonce.php?mesAnnonces=1">Mes annonces</a>
                                     <?php if ($_SESSION['role']) { ?> <a class="dropdown-item" href="TypeBiens.php">Les Types de Biens</a> <?php } ?>
                                 </div>
@@ -221,13 +221,13 @@ class ViewTemplate
                                     <a href="Accueil.php">Accueil</a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#">Acheter</a>
+                                    <a href="Acheter.php">Acheter</a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#">Louer</a>
+                                    <a href="Louer.php">Louer</a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#">Vendre</a>
+                                    <a href="CreationAnnonce.php">Vendre</a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="#">Contact</a>

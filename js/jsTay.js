@@ -13,6 +13,11 @@ $("#photoP").change(function (e) {
   val = val.split("\\");
   $("#labelPhotoP").text(val[val.length - 1]);
 });
+$("#newPhotoP").change(function (e) {
+  let val = $(this).val();
+  val = val.split("\\");
+  $("#labelNewPhotoP").text(val[val.length - 1]);
+});
 
 function generationAjax(url, donnee, donneeType, idDiv) {
   let request = $.ajax({
@@ -56,3 +61,30 @@ $(".modifTypeBien span, .iconeModif span").hover(
     $(this).removeClass("text-success");
   }
 );
+
+//gestion favoris
+$(".iconeFav").click(function (e) {
+  e.preventDefault();
+  let button = $(e.currentTarget);
+  let idAnnonce = button.data("annonceid");
+  let idUser = button.data("userid");
+  console.log(idAnnonce, idUser);
+
+  $(this).children().hasClass("text-white")
+    ? $(this).children().toggleClass("text-white") &&
+      $(this).children().toggleClass("text-secondary") &&
+      generationAjax(
+        "AjoutFavoris.php",
+        { suppFav: idAnnonce, idUser: idUser },
+        "html",
+        "tay"
+      )
+    : $(this).children().toggleClass("text-white") &&
+      $(this).children().toggleClass("text-secondary") &&
+      generationAjax(
+        "AjoutFavoris.php",
+        { ajoutFav: idAnnonce, idUser: idUser },
+        "html",
+        "tay"
+      );
+});

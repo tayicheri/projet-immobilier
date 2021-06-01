@@ -1,6 +1,7 @@
 <?php
 require_once '../model/ModelTypeBien.php';
 require_once '../model/ModelAnnonce.php';
+require_once '../model/ModelFavoris.php';
 require_once '../model/ModelUser.php';
 class ViewAnnonce
 {
@@ -141,7 +142,7 @@ class ViewAnnonce
                                         <a href="Accueil.php">Accueil</a>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <a href="Annonce.php">Annonces</a>
+                                        <a href="Annonce.php?touteAnnonce=1">Annonces</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">
                                         <?php echo ucfirst($data['titre']) ?>
@@ -343,9 +344,9 @@ class ViewAnnonce
 
 
     <?php }
-    public static function mesAnnonces($annoncesUser)
+    public static function mesAnnonces($texte, $annoncesUser)
     {
-
+      
 
     ?>
 
@@ -357,7 +358,7 @@ class ViewAnnonce
                     <div class="row">
                         <div class="col-md-12 col-lg-8">
                             <div class="title-single-box">
-                                <h1 class="title-single">Mes Annonces</h1>
+                                <h1 class="title-single"><?= $texte ?></h1>
                                 <span class="color-text-a">Liste Des Annonces</span>
                             </div>
                         </div>
@@ -450,6 +451,21 @@ class ViewAnnonce
                                                             <span><?php echo $annonce['surface'] . 'm' ?>
                                                                 <sup>2</sup>
                                                             </span>
+                                                        </li>
+                                                        <li>
+
+                                                            <a class="iconeFav" data-annonceid="<?= $annonce['annonce_id'] ?>" data-userid="<?= $_SESSION['id'] ?>" href="<?php echo  $annonce['annonce_id'] ?>"> <span class=" <?= ModelFavoris::verifieSiFav($_SESSION['id'], $annonce['annonce_id']) ? 'text-white' : 'text-secondary' ?>"><i class="fas fa-heart fa-2x"></i></span></a>
+                                                        </li>
+                                                    <?php } else if (isset($_SESSION['id'])) { ?>
+                                                        <li>
+                                                            <h4 class="card-info-title">Surface</h4>
+                                                            <span><?php echo $annonce['surface'] . 'm' ?>
+                                                                <sup>2</sup>
+                                                            </span>
+                                                        </li>
+                                                        <li>
+
+                                                            <a class="iconeFav" data-annonceid="<?= $annonce['annonce_id'] ?>" data-userid="<?= $_SESSION['id'] ?>" href="<?php echo  $annonce['annonce_id'] ?>"> <span class=" <?= ModelFavoris::verifieSiFav($_SESSION['id'], $annonce['annonce_id']) ? 'text-white' : 'text-secondary' ?>"><i class="fas fa-heart fa-2x"></i></span></a>
                                                         </li>
                                                     <?php } else { ?>
                                                         <li>
@@ -929,7 +945,7 @@ class ViewAnnonce
                                     if (is_int($cle)) {  ?>
                                         <div><a href="" data-image="<?= $miniature  ?>" data-toggle="modal" data-target="#modalPhoto"><img class="img-thumbnail img-fluid" src="../../images/<?= $miniature ?>"></a></div>
                                     <?php  } else { ?>
-                                        <div><a href="" id="photoP" data-toggle="modal" data-target="#modalPhotoP"><img class="img-thumbnail img-fluid" src="../../images/<?= $miniature ?>"></a></div>
+                                        <div><a href="" id="photoP" data-image="<?= $miniature  ?>" data-toggle="modal" data-target="#modalPhotoP"><img class="img-thumbnail img-fluid" src="../../images/<?= $miniature ?>"></a></div>
                                 <?php }
                                 } ?>
                                 <div type="button" id="ajoutPhoto" class="btn btn-warning d-flex align-items-center text-secondary"><i class="fas fa-plus"></i></div>
@@ -980,16 +996,19 @@ class ViewAnnonce
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="custom-file ml-3  col-md-12">
-                                            <input type="file" class="custom-file-input" name="photoP" id="photoP" accept="image/*">
-                                            <label class="custom-file-label col-md-12" id="labelPhotoP" for="customFile">photo Principal</label>
+                                    <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" id="formModifPhotoP" method="POST" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            <div class="custom-file   col-md-12">
+                                                <input type="file" class="custom-file-input" name="newPhotoP" id="newPhotoP" accept="image/*" required>
+                                                <label class="custom-file-label col-md-12" id="labelNewPhotoP" for="customFile">photo Principal</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                        <button type="button" class="btn btn-success">Remplacer</button>
-                                    </div>
+                                        <input type="hidden" id="lienPhotoP" name="lienPhotoP">
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                            <button type="submit" id="modifPhotoP" name="modifPhotoP" class="btn btn-success">Remplacer</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

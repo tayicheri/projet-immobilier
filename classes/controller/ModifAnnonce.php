@@ -27,7 +27,7 @@ if (!isset($_SESSION['id'])) {
 
             header('location:Accueil.php?alert=Donnee+corompue,modification+de+l+annonce+annuler');
         }
-    } else if ($_POST['validerModifAnnonce']) {
+    } else if (isset($_POST['validerModifAnnonce'])) {
         $donnee = [
             $_POST['titre'],
             $_POST['type'],
@@ -79,6 +79,29 @@ if (!isset($_SESSION['id'])) {
             ViewTemplate::footer();
             ViewTemplate::baliseBottom();
         }
+
+        //MODIF PHOTO P
+    } else if (isset($_POST['modifPhotoP'])) {
+        $donnee = [$_POST['modifPhotoP'], $_POST['lienPhotoP']];
+        $type = ['annonceId', 'lienImg'];
+        $donneeOk = testPreg::testInput($donnee, $type);
+        if ($donneeOk['ok']) {
+            $donneeOk = $donneeOk['donnee'];
+            // unlink('../../images/' . $donneeOk['lienImg']);
+            $json = json_decode(ModelAnnonce::annonceViaId($donneeOk['annonceId'])['photos'], true);
+            $extensions = ['jpg', 'gif', 'png', 'jpeg'];
+            $downloadP = telechargement::telecharge2($_FILES['newPhotoP'], $extensions, 'images');
+            $json['photoP'] = $downloadP['nom'];
+            var_dump($_POST, $_FILES, $json);
+            ModelAnnonce::modifPhotoP($donneeOk['lienImg'], json_encode($json), $donneeOk['annonceId']);
+            header('location:ModifAnnonce.php?id=' . $donneeOk['annonceId']);
+        } else {
+            ViewTemplate::baliseTop();
+            ViewTemplate::navBar();
+            ViewTemplate::alerte('secondary text-danger" style="margin-top:155px"', 'donnee corompue. pour revenir aux annonces cliquez', 'Annonce.php?mesAnnonces=1', 'ici');
+            ViewTemplate::footer();
+            ViewTemplate::baliseBottom();
+        }
     } else {
         header('location:Annonce.php?mesAnnonces=1');
     }
@@ -104,4 +127,17 @@ if (!isset($_SESSION['id'])) {
             $('#fermeModalSup').click()
         })
     })
+    //modal modif photoP
+    $('#modalPhotoP').on('shown.bs.modal', function(e) {
+        let button = $(e.relatedTarget)
+        let idAnnonce = $("#validerModifAnnonce").attr('value')
+        let img = button.data('image')
+        console.log(idAnnonce, img)
+        $("#modifPhotoP").val(idAnnonce)
+        $("#lienPhotoP").val(img)
+
+    })
+
+    //validation client
+    validationClient('modifAnnonce', ['titre', 'surface', 'prix', 'adresse', 'cp', 'nomVille'])
 </script>

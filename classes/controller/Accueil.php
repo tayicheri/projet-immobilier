@@ -7,7 +7,7 @@ require_once '../utils/TestPreg.php';
 ViewTemplate::baliseTop();
 
 ViewTemplate::navBar();
-ViewAnnonce::grosCarousel(1,4,5);
+ViewAnnonce::grosCarousel(1,2,3);
 
 
 if (isset($_GET['alert'])) {

@@ -30,7 +30,7 @@ class ModelUser
         $this->actif = $donneeUser['actif'];
         $this->token = $donneeUser['token'];
         $this->annonces = $this->getUserAnnonceById($id);
-        $this->favoris = [1];
+        $this->favoris = $this->getUserFavorisById($id);
     }
 
 
@@ -79,6 +79,23 @@ class ModelUser
         $rPrep->execute([$id]);
         return $rPrep->fetchAll(pdo::FETCH_ASSOC);
     }
+    //recup annonce user favoris via id
+
+    public static function getUserFavorisById($id)
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("SELECT favoris.annonce_id,titre,descriptions,surface,photos,adresse,ville,cp,prix,type,type_bien_id,user_annonce.user_id,nom,prenom,mail,tel,favoris.user_id as fav_user_id FROM favoris
+        INNER JOIN annonce
+        ON annonce.id=favoris.annonce_id
+        INNER JOIN user 
+        ON user.id=favoris.user_id
+        INNER JOIN user_annonce
+        ON user_annonce.annonce_id=annonce.id
+      
+        WHERE favoris.user_id=?");
+        $rPrep->execute([$id]);
+        return $rPrep->fetchAll(pdo::FETCH_ASSOC);
+    }
 
     //confirme compte via token
     public static function confirmCompte($mail)
@@ -93,6 +110,15 @@ class ModelUser
         $datay = connexion();
         $rPrep = $datay->prepare("UPDATE user SET $colonne=? WHERE mail=? ");
         $rPrep->execute([$valeur, $mail]);
+    }
+
+    //liste user
+    public static function listeUser()
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("SELECT * FROM user ");
+        $rPrep->execute([]);
+        return $rPrep->fetchAll(pdo::FETCH_ASSOC);
     }
 
     //GETTER user

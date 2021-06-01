@@ -6,6 +6,6 @@ require_once '../utils/TestPreg.php';
 
 ViewTemplate::baliseTop();
 ViewTemplate::navBar();
-ViewAnnonce::mesAnnonces(ModelAnnonce::annonceListeVL(0));
+ViewAnnonce::mesAnnonces('Annonces à Vendre', ModelAnnonce::annonceListeVL(0));
 ViewTemplate::footer();
 ViewTemplate::baliseBottom();
