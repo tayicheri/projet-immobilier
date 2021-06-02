@@ -44,7 +44,7 @@ if (!isset($_SESSION['id'])) {
         $('#monProfil').removeClass('d-none').hide().fadeIn('slow');
     })
 
-
+    //script desactivation compte par admin
     $('.activeDesactive').click(function(e) {
         e.preventDefault()
         let button = $(e.currentTarget)
@@ -56,13 +56,39 @@ if (!isset($_SESSION['id'])) {
             generationAjax('ActiveDesactive.php', {
                 desactive: idUser
             }, 'html', 'tay');
+            $(this).toggleClass('lientay');
             ($(this).parent()).parent().toggleClass('bg-danger')
         } else {
             console.log('arsene');
             generationAjax('ActiveDesactive.php', {
                 active: idUser
             }, 'html', 'tay');
+            $(this).toggleClass('lientay');
             ($(this).parent()).parent().toggleClass('bg-danger')
+        }
+    })
+
+    //script atribution role admin par admin 
+    $('.admin').click(function(e) {
+        e.preventDefault()
+        let button = $(e.currentTarget)
+        let idUser = button.data('iduser')
+        let role = button.data('role')
+        console.log(idUser, role)
+        if (role) {
+            console.log('tay');
+            generationAjax('ActiveDesactive.php', {
+                prendAdmin: idUser
+            }, 'html', 'tay');
+            $(this).toggleClass('text-warning');
+            
+        } else {
+            console.log('arsene');
+            generationAjax('ActiveDesactive.php', {
+                rendAdmin: idUser
+            }, 'html', 'tay');
+            $(this).toggleClass('text-warning');
+            
         }
     })
 </script>

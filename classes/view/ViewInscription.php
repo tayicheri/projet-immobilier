@@ -347,8 +347,9 @@ class ViewInscription
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="card-footer-d text-center">
-                                                <a href="" data-actif="<?= $moi['actif'] ? '1' : '0' ?>" class="activeDesactive <?= $moi['actif'] ? 'lientay' : '' ?>" data-iduser="<?= $moi['mail'] ?>"><i class="fas fa-window-close fa-3x"></i></a>
+                                            <div class="card-footer-d d-flex justify-content-around">
+                                                <a href="" data-actif="<?= $moi['actif'] ?>" class="activeDesactive <?= $moi['actif'] ? 'lientay' : '' ?>" data-iduser="<?= $moi['mail'] ?>"><i class="fas fa-window-close fa-3x"></i></a>
+                                                <a href="" data-role="<?= $moi['role'] ?>" class="admin <?= $moi['role'] ? 'text-warning' : '' ?>" data-iduser="<?= $moi['mail'] ?>"><i class="fas fa-crown fa-3x"></i></a>
                                             </div>
                                         </div>
                                     </div>
