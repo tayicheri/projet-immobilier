@@ -44,6 +44,13 @@ class ModelUser
         $rPrep = $datay->prepare("INSERT INTO user (nom,prenom,mail,pass,tel,token) VALUES (:nom,:prenom,:mail,:mdp,:tel,:code)");
         $rPrep->execute([':nom' => $nom, ':prenom' => $prenom, ':mail' => $mail, ':tel' => $tel, ':mdp' => $mdp, ':code' => $code]);
     }
+    // mODIF USER
+    function modifUser()
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("UPDATE user SET nom=:nom, prenom=:prenom, mail=:mail, tel=:tel, pass=:mdp WHERE id=:id ");
+        $rPrep->execute([':nom' => $this->nom, ':prenom' => $this->prenom, ':mail' => $this->mail, ':tel' => $this->tel, ':mdp' =>$this->pass, ':id' => $this->id]);
+    }
 
     //recup user via mail
 
@@ -176,6 +183,7 @@ class ModelUser
     public function setNom($newNom)
     {
         $this->nom = $newNom;
+
         return $this;
     }
     public function setPrenom($newPrenom)
