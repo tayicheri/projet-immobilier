@@ -38,7 +38,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                         ViewTemplate::baliseTop();
                         ViewTemplate::navBar();
                         ViewConnexion::formConnexion();
-                        ViewTemplate::alerte('success', "vous n'avez pas activer votre compte. Pour le faire cliquez", 'ValidationInscription.php?code=' . ModelUser::getByMail($donneeOk['email'])['token'] . '&mail=' . $donneeOk['email'], 'ici');
+                        ViewTemplate::alerte('success', "vous n'avez pas activer votre compte. Pour le faire verifiez vos email", '', '');
                     }
                 } else {
                     ViewTemplate::baliseTop();

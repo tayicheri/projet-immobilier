@@ -73,7 +73,7 @@ class ViewInscription
         </main>
     <?php  }
 
-    public static function reponseToken($code, $mail, $ok)
+    public static function reponseToken( $mail, $ok)
     { ?>
         <!-- ======= Intro Single ======= -->
         <section class="intro-single">
@@ -99,7 +99,7 @@ class ViewInscription
                 </div>
                 <?php if ($ok == 1) { ?>
                     <div class="text-center mt-5">
-                        Pour valider votre inscription, veuillez cliquez <a class="text-success" href="ValidationInscription.php?code=<?php echo $code ?>&mail=<?php echo $mail ?>">ici</a>
+                        Pour valider votre inscription, veuillez verifez vos email a l'adresse <?= $mail ?> 
                     </div> <?php } else { ?>
                     <div class="text-center mt-5">
                         Cet utilisateur existe deja, pour reessayer cliquez <a class="text-success" href="inscription.php">ici</a>

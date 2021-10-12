@@ -4,6 +4,7 @@ require_once '../view/ViewTemplate.php';
 require_once '../view/ViewInscription.php';
 require_once '../model/ModelUser.php';
 require_once '../utils/TestPreg.php';
+require_once '../utils/Email.php';
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     header('location:Accueil.php');
     exit();
@@ -22,7 +23,8 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             } else {
                 $code = uniqid();
                 ModelUser::ajoutUser($donneeOk['nom'], $donneeOk['prenom'], $donneeOk['email'], $donneeOk['tel'], password_hash($donneeOk['mdp'], PASSWORD_DEFAULT), $code);
-                ViewInscription::reponseToken($code, $donneeOk['email'], 1);
+                ViewInscription::reponseToken($donneeOk['email'], 1);
+                confirmEmail($donneeOk['email'], $code);
             }
         } else {
             ViewInscription::formInscription();
@@ -39,6 +41,6 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
 ?>
 <script>
     //validation client
-    let type = ['nom', 'prenom', 'tel', 'email', 'mdp','mdpC','rgpd']
+    let type = ['nom', 'prenom', 'tel', 'email', 'mdp', 'mdpC', 'rgpd']
     validationClient('formInscription', type)
 </script>

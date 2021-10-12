@@ -1,8 +1,9 @@
 
 inscription: 
-- ajout input confirmation mdp
-- mailer php
+
 - captcha robot
+-suppression de compte
+
 Creation annonce:
 - regex des inputs
 

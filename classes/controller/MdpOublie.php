@@ -1,6 +1,7 @@
 <?php
 require_once '../view/ViewTemplate.php';
 require_once '../utils/TestPreg.php';
+require_once '../utils/Email.php';
 require_once '../model/ModelUser.php';
 
 
@@ -13,7 +14,8 @@ if (isset($_POST['mail'])) {
         if (ModelUser::getByMail($donneeOk['email'])) {
             $code = uniqid();
             ModelUser::modifColonneUser('token', $code, $donneeOk['email']);
-            ViewTemplate::alerte('secondary', 'pour modifier votre mot de passe cliquez', 'ConnexionUser.php?code=' . $code . '&mail=' . $donneeOk['email'], 'ici');
+            modifPassword($donneeOk['email'], $code);
+            ViewTemplate::alerte('secondary', 'pour modifier votre mot de passe ,suivez le lien dans vos email', '', '');
         } else {
             ViewTemplate::alerte('secondary', 'adresse inccorect. Pour reessayer cliquez', 'ConnexionUser.php', 'ici');
         }
