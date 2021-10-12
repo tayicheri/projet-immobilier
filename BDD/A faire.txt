@@ -1,0 +1,8 @@
+
+inscription: 
+- ajout input confirmation mdp
+- mailer php
+- captcha robot
+Creation annonce:
+- regex des inputs
+

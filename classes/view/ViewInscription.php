@@ -51,6 +51,14 @@ class ViewInscription
                                 <label for="mdp">Mot de Passe</label>
                                 <input type="password" class="form-control" value="<?php echo isset($_POST['inscriNom']) ? $_POST['inscriMdp'] : '' ?>" id="inscriMdp" name="inscriMdp">
                             </div>
+                            <div class="form-group col-md-6">
+                                <label for="mdp">Confirmez Mot de Passe</label>
+                                <input type="password" class="form-control" value="<?php echo isset($_POST['confirmMdp']) ? $_POST['confirmMdp'] : '' ?>" id="confirmMdp" name="confirmMdp">
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                <input type="checkbox" class="" <?php echo isset($_POST['confirmMdp']) ? 'checked' : '' ?> id="rgpd" name="rgpd">
+                                <label for="mdp">J'accepte que mes données soit colecter dans le cadre de cet exercice (aucune utilisation a des fins commerciales ne sera faite)</label>
+                            </div>
 
 
                             <div class="col-md-12 mt-2">

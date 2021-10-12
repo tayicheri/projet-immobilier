@@ -39,6 +39,6 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
 ?>
 <script>
     //validation client
-    let type = ['nom', 'prenom', 'tel', 'email', 'mdp']
+    let type = ['nom', 'prenom', 'tel', 'email', 'mdp','mdpC','rgpd']
     validationClient('formInscription', type)
 </script>
