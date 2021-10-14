@@ -73,7 +73,7 @@ class ViewInscription
         </main>
     <?php  }
 
-    public static function reponseToken( $mail, $ok)
+    public static function reponseToken($mail, $ok)
     { ?>
         <!-- ======= Intro Single ======= -->
         <section class="intro-single">
@@ -99,7 +99,7 @@ class ViewInscription
                 </div>
                 <?php if ($ok == 1) { ?>
                     <div class="text-center mt-5">
-                        Pour valider votre inscription, veuillez verifez vos email a l'adresse <?= $mail ?> 
+                        Pour valider votre inscription, veuillez verifez vos email a l'adresse <?= $mail ?>
                     </div> <?php } else { ?>
                     <div class="text-center mt-5">
                         Cet utilisateur existe deja, pour reessayer cliquez <a class="text-success" href="inscription.php">ici</a>
@@ -231,6 +231,7 @@ class ViewInscription
                                                 <p>
                                                     <strong>edit: </strong>
                                                     <a href="#" data-toggle="modal" data-target="#modalModifProfil" class=" pl-5"> <i class="fas fa-user-edit fa-3x"></i> </a>
+                                                    <a href="#" data-toggle="modal" data-target="#modalSuppProfil" class=" lientay pl-5"> <i class="fas fa-trash fa-3x"></i> </a>
                                                 </p>
 
                                             </div>
@@ -245,7 +246,7 @@ class ViewInscription
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Modifer son profil</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -274,10 +275,31 @@ class ViewInscription
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" name="validerModifProfil" id="validerModifProfil" class="btn btn-success">Save changes</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                            <button type="submit" name="validerModifProfil" id="validerModifProfil" class="btn btn-success">Modifier</button>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal suppr -->
+                        <div class="modal fade" id="modalSuppProfil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Supprimer son compte</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">Vous etes sur le point de supprimer definitivement votre compte.</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" id="formSuppProfil" method="POST">
+                                            <button type="submit" name="validerSuppProfil" id="validerSuppProfil" value="<?= $user->getId() ?>" class="btn btn-danger">Supprimer</button>
+
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

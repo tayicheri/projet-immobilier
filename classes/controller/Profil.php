@@ -24,6 +24,23 @@ if (!isset($_SESSION['id'])) {
         } else {
             ViewTemplate::alerte('secondary" style="margin-top:150px;"', 'Donnee Corompue', '', '');
         }
+    } else if (isset($_POST["validerSuppProfil"])) {
+        $donnee = [$_POST["validerSuppProfil"]];
+        $typeTest = ['id'];
+        $donneeOk = testPreg::testInput($donnee, $typeTest);
+        if ($donneeOk['ok']) {
+            $donneeOk = $donneeOk['donnee'];
+            if (ModelUser::getById($donneeOk['id'])) {
+                ModelUser::deleteUser($donneeOk['id']);
+                session_unset();
+                session_destroy();
+                ViewTemplate::alerte('secondary" style="margin-top:150px;"', 'Votre compte a bien été supprimer', '', '');
+            } else {
+                ViewTemplate::alerte('secondary" style="margin-top:150px;"', 'Cet utilisateur n\'existe pas', '', '');
+            }
+        } else {
+            ViewTemplate::alerte('secondary" style="margin-top:150px;"', 'Donnee Corompue', '', '');
+        }
     } else {
         ViewInscription::voirProfil($_SESSION['id']);
     }
@@ -81,14 +98,14 @@ if (!isset($_SESSION['id'])) {
                 prendAdmin: idUser
             }, 'html', 'tay');
             $(this).toggleClass('text-warning');
-            
+
         } else {
             console.log('arsene');
             generationAjax('ActiveDesactive.php', {
                 rendAdmin: idUser
             }, 'html', 'tay');
             $(this).toggleClass('text-warning');
-            
+
         }
     })
 </script>

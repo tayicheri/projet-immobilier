@@ -49,7 +49,7 @@ class ModelUser
     {
         $datay = connexion();
         $rPrep = $datay->prepare("UPDATE user SET nom=:nom, prenom=:prenom, mail=:mail, tel=:tel, pass=:mdp WHERE id=:id ");
-        $rPrep->execute([':nom' => $this->nom, ':prenom' => $this->prenom, ':mail' => $this->mail, ':tel' => $this->tel, ':mdp' =>$this->pass, ':id' => $this->id]);
+        $rPrep->execute([':nom' => $this->nom, ':prenom' => $this->prenom, ':mail' => $this->mail, ':tel' => $this->tel, ':mdp' => $this->pass, ':id' => $this->id]);
     }
 
     //recup user via mail
@@ -126,6 +126,14 @@ class ModelUser
         $rPrep = $datay->prepare("SELECT * FROM user ");
         $rPrep->execute([]);
         return $rPrep->fetchAll(pdo::FETCH_ASSOC);
+    }
+
+    // supprime utilisateur
+    public static function deleteUser($id)
+    {
+        $datay = connexion();
+        $rPrep = $datay->prepare("DELETE FROM user WHERE id=?");
+        $rPrep->execute([$id]);
     }
 
     //GETTER user
