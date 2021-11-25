@@ -88,3 +88,15 @@ $(".iconeFav").click(function (e) {
         "tay"
       );
 });
+
+//affichage responsive profil
+
+$("#navbarDropdown").click(function () {
+  if ($("#menuProfil").hasClass("dropdown-menu")) {
+    $("#menuProfil").removeClass("dropdown-menu");
+    $("#menuProfil").addClass("dropdown-visible");
+  }else{
+    $("#menuProfil").removeClass("dropdown-visible");
+    $("#menuProfil").addClass("dropdown-menu");
+  }
+});

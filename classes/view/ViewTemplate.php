@@ -180,7 +180,8 @@ class ViewTemplate
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?php echo $_SESSION['nom'] ?>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                               
+                                <div class="dropdown-menu" id="menuProfil" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="Profil.php">Mon profil</a>
                                     <a class="dropdown-item" href="Favoris.php">Mes favoris</a>
                                     <a class="dropdown-item" href="Annonce.php?mesAnnonces=1">Mes annonces</a>

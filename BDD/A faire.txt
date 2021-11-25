@@ -5,8 +5,7 @@ inscription:
 - securisation crsf  supression compte + modif compte
 - photo de profil
 
-Creation annonce:
-- regex des inputs ( creation annonce fait, modif annoce a faire)
+click profil responsive
 
 responsive :
 - accueil

@@ -32,7 +32,7 @@ a:hover {
   text-decoration: none;
 }
 .lientay:hover {
-  color: #C93443;
+  color: #c93443;
   text-decoration: none;
 }
 
@@ -799,6 +799,12 @@ a:hover {
   filter: alpha(opacity=1);
 }
 
+.dropdown-visible {
+  transform: translate3d(0px, 0px, 0px);
+  visibility: visible;
+  opacity: 1;
+  filter: alpha(opacity=1);
+}
 /*------/ Hamburger Navbar /------*/
 .navbar-toggler {
   position: relative;
