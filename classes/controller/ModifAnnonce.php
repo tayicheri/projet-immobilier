@@ -37,10 +37,10 @@ if (!isset($_SESSION['id'])) {
             $_POST['description'],
             $_POST['adresse'],
             $_POST['cp'],
-            $_POST['ville'],
+            $_POST['city'],
             $_POST['validerModifAnnonce']
         ];
-        $type = ['titre', 'type', 'typeBien', 'surface', 'prix', 'description', 'adresse', 'cp', 'ville', 'annonceId'];
+        $type = ['titre', 'type', 'typeBien', 'surface', 'prix', 'description', 'adresse', 'cp', 'city', 'annonceId'];
         $donneeOk = testPreg::testInput($donnee, $type);
         if ($donneeOk['ok']) {
             $donneeOk = $donneeOk['donnee'];
@@ -59,7 +59,7 @@ if (!isset($_SESSION['id'])) {
                 }
                 if ($fichierT == $countFichier) {
                     $json = json_encode($json);
-                    ModelAnnonce::modifAnnonce($donneeOk['titre'], $donneeOk['type'], $donneeOk['typeBien'], $donneeOk['surface'], $donneeOk['prix'], $donneeOk['description'], $donneeOk['adresse'], $donneeOk['cp'], $donneeOk['ville'], $json, $donneeOk['annonceId']);
+                    ModelAnnonce::modifAnnonce($donneeOk['titre'], $donneeOk['type'], $donneeOk['typeBien'], $donneeOk['surface'], $donneeOk['prix'], $donneeOk['description'], $donneeOk['adresse'], $donneeOk['cp'], $donneeOk['city'], $json, $donneeOk['annonceId']);
                     header('location:Annonce.php?id=' . $donneeOk['annonceId']);
                 } else {
                     ViewTemplate::baliseTop();
@@ -69,7 +69,7 @@ if (!isset($_SESSION['id'])) {
                 }
             } else {
                 $json = json_encode($json);
-                ModelAnnonce::modifAnnonce($donneeOk['titre'], $donneeOk['type'], $donneeOk['typeBien'], $donneeOk['surface'], $donneeOk['prix'], $donneeOk['description'], $donneeOk['adresse'], $donneeOk['cp'], $donneeOk['ville'], $json, $donneeOk['annonceId']);
+                ModelAnnonce::modifAnnonce($donneeOk['titre'], $donneeOk['type'], $donneeOk['typeBien'], $donneeOk['surface'], $donneeOk['prix'], $donneeOk['description'], $donneeOk['adresse'], $donneeOk['cp'], $donneeOk['city'], $json, $donneeOk['annonceId']);
                 header('location:Annonce.php?id=' . $donneeOk['annonceId']);
             }
         } else {
@@ -139,5 +139,5 @@ if (!isset($_SESSION['id'])) {
     })
 
     //validation client
-    validationClient('modifAnnonce', ['titre', 'surface', 'prix', 'adresse', 'cp', 'nomVille'])
+    validationClient('modifAnnonce', ['titre', 'surface', 'prix', 'adresse', 'cp', 'city','description'])
 </script>
