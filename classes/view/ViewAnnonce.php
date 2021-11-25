@@ -89,7 +89,7 @@ class ViewAnnonce
                                 </div>
                                 <div class="form-group">
                                     <label for="mdp">Ville</label>
-                                    <input type="text" class="form-control" value="<?php echo isset($_POST['validerAjoutAnnonce']) ? $_POST['ville'] : '' ?>" id="ville" name="ville">
+                                    <input type="text" class="form-control" value="<?php echo isset($_POST['validerAjoutAnnonce']) ? $_POST['ville'] : '' ?>" id="city" name="city">
                                 </div>
                             </div>
                             <div class="custom-file ml-3 col-md-12">

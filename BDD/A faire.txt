@@ -2,8 +2,11 @@
 inscription: 
 
 - captcha robot
--suppression de compte
+- securisation crsf  supression compte + modif compte
+- photo de profil
 
 Creation annonce:
-- regex des inputs
+- regex des inputs ( creation annonce fait, modif annoce a faire)
 
+responsive :
+- accueil

@@ -25,16 +25,24 @@ if (!isset($_SESSION['id'])) {
             ViewTemplate::alerte('secondary" style="margin-top:150px;"', 'Donnee Corompue', '', '');
         }
     } else if (isset($_POST["validerSuppProfil"])) {
+
         $donnee = [$_POST["validerSuppProfil"]];
         $typeTest = ['id'];
         $donneeOk = testPreg::testInput($donnee, $typeTest);
         if ($donneeOk['ok']) {
+
             $donneeOk = $donneeOk['donnee'];
             if (ModelUser::getById($donneeOk['id'])) {
+
                 ModelUser::deleteUser($donneeOk['id']);
-                session_unset();
-                session_destroy();
                 ViewTemplate::alerte('secondary" style="margin-top:150px;"', 'Votre compte a bien été supprimer', '', '');
+?>
+                <script>
+                    setTimeout(function() {
+                        location.replace('Deconnexion.php')
+                    }, 3000)
+                </script>
+<?php
             } else {
                 ViewTemplate::alerte('secondary" style="margin-top:150px;"', 'Cet utilisateur n\'existe pas', '', '');
             }

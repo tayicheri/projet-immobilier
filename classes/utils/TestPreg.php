@@ -5,11 +5,21 @@ class testPreg
 
     public static function testInput($donnee, $typeTest)
     {
-
+        $type = ['titre', 'type', 'typeBien', 'surface', 'prix', 'description', 'adresse', 'cp', 'ville', 'id'];
         $tabRegex = [
             'nom' => '/^[\p{L}\s]{2,15}$/u',
             'prenom' => '/^[\p{L}\s]{2,15}$/u',
             'tel' => '/^[+]?[0-9]{8,}$/',
+            'titre' => '/^[a-z\s]+$/ui',
+           
+            
+            'surface' => '/^[1-9][\d]{0,5}$/ui',
+            'prix' => '/^[1-9][\d]{0,10}$/ui',
+            'description' => '/^.{50,500}$/ui',
+            'adresse' => '/^([1-9][0-9]*(?:-[1-9][0-9]*)*)[\s,-]+(?:(bis|ter|qua)[\s,-]+)?([\w]+[\-\w]*)[\s,]+([-\w].{0,50})$/ui',
+            'cp' => '/^[1-9][\d]{4}$/ui',
+            'city' => '/^[\D]{0,30}$/ui',
+            'id' => '/./',
 
         ];
 

@@ -20,10 +20,10 @@ if (!isset($_SESSION['id']) && empty($_SESSION['role'])) {
             $_POST['description'],
             $_POST['adresse'],
             $_POST['cp'],
-            $_POST['ville'],
+            $_POST['city'],
             $_SESSION['id']
         ];
-        $type = ['titre', 'type', 'typeBien', 'surface', 'prix', 'description', 'adresse', 'cp', 'ville', 'id'];
+        $type = ['titre', 'type', 'typeBien', 'surface', 'prix', 'description', 'adresse', 'cp', 'city', 'id'];
         $donneeOk = testPreg::testInput($donnee, $type);
         if ($donneeOk['ok']) {
             $json = [];
@@ -43,7 +43,7 @@ if (!isset($_SESSION['id']) && empty($_SESSION['role'])) {
             if ($downloadP['ok'] && $fichierT == $countFichier) {
                 $donneeOk = $donneeOk['donnee'];
                 $json = json_encode($json);
-                $idAnnonce = ModelAnnonce::ajoutAnnonce($donneeOk['titre'], $donneeOk['type'], $donneeOk['typeBien'], $donneeOk['surface'], $donneeOk['prix'], $donneeOk['description'], $donneeOk['adresse'], $donneeOk['cp'], $donneeOk['ville'], $json, $_SESSION['id']);
+                $idAnnonce = ModelAnnonce::ajoutAnnonce($donneeOk['titre'], $donneeOk['type'], $donneeOk['typeBien'], $donneeOk['surface'], $donneeOk['prix'], $donneeOk['description'], $donneeOk['adresse'], $donneeOk['cp'], $donneeOk['city'], $json, $_SESSION['id']);
                 header('location:Annonce.php?id=' . $idAnnonce);
             } else {
                 ViewTemplate::baliseTop();
@@ -69,6 +69,6 @@ if (!isset($_SESSION['id']) && empty($_SESSION['role'])) {
 }
 ?>
 <script>
-    validationClient('ajoutAnnonce', ['titre', 'surface', 'prix', 'adresse', 'cp', 'nomville'])
+    validationClient('ajoutAnnonce', ['titre', 'surface', 'prix', 'adresse', 'cp', 'city','description'])
     
 </script>

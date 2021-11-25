@@ -34,7 +34,6 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
         ViewInscription::formInscription();
     }
 
-
     ViewTemplate::footer();
     ViewTemplate::baliseBottom();
 }
